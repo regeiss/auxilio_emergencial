@@ -12,6 +12,7 @@ import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repositor
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
 import 'package:gtk_flutter/source/features/responsavel/presentation/lista_responsavel_screen.dart';
+import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 part 'app_router.g.dart';
@@ -22,10 +23,23 @@ final _cadastroNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'cadastro');
 final _abrigoNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'abrigo');
 final _listaNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'lista');
 final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
-final _responsavelNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'responsavel');
-final _ajustesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'responsavel');
+final _responsavelNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'responsavel');
+final _ajustesNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'responsavel');
 
-enum AppRoute { onboarding, startup, signIn, home, cadastro, abrigos, listas, responsavel, perfil, ajustes }
+enum AppRoute {
+  onboarding,
+  startup,
+  signIn,
+  home,
+  cadastro,
+  abrigos,
+  listas,
+  responsavel,
+  perfil,
+  ajustes
+}
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
@@ -46,7 +60,8 @@ GoRouter goRouter(GoRouterRef ref) {
         return '/startup';
       }
 
-      final onboardingRepository = ref.read(onboardingRepositoryProvider).requireValue;
+      final onboardingRepository =
+          ref.read(onboardingRepositoryProvider).requireValue;
       final didCompleteOnboarding = onboardingRepository.isOnboardingComplete();
       final path = state.uri.path;
 
@@ -60,11 +75,16 @@ GoRouter goRouter(GoRouterRef ref) {
       final isLoggedIn = authRepository.currentUser != null;
 
       if (isLoggedIn) {
-        if (path.startsWith('/startup') || path.startsWith('/onboarding') || path.startsWith('/signIn')) {
+        if (path.startsWith('/startup') ||
+            path.startsWith('/onboarding') ||
+            path.startsWith('/signIn')) {
           return '/home';
         }
       } else {
-        if (path.startsWith('/startup') || path.startsWith('/onboarding') || path.startsWith('/home') || path.startsWith('/perfil')) {
+        if (path.startsWith('/startup') ||
+            path.startsWith('/onboarding') ||
+            path.startsWith('/home') ||
+            path.startsWith('/perfil')) {
           return '/signIn';
         }
       }
@@ -166,7 +186,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 path: '/responsavel',
                 name: AppRoute.responsavel.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: ListaResponsavelScreen(),
+                  child: ListaUserScreen(),
                 ),
               ),
             ],
