@@ -10,10 +10,6 @@ class UserApiService {
 
   Future<List<User>> getUser() async {
     try {
-      final location = await getLocation();
-      lat = location.latitude;
-      lon = location.longitude;
-
       var response =
           await Dio(options).get('https://jsonplaceholder.typicode.com/users');
       var users = (response.data as List);

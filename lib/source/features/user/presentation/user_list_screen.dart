@@ -14,18 +14,18 @@ class ListaUserScreen extends ConsumerWidget {
     final userData = ref.watch(userDataProvider.future);
     return Scaffold(
       appBar: AppBar(
-          title: const Text('User'),
-          actions: <Widget>[
-            PopupMenuButton<int>(
-              onSelected: (item) => handleClick(item, ref),
-              itemBuilder: (context) => [
-                PopupMenuItem<int>(value: 0, child: Text('Logout')),
-                PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
-              ],
-            ),
-          ],
-        ),
-        drawer: MainDrawer(),
+        title: const Text('User'),
+        actions: <Widget>[
+          PopupMenuButton<int>(
+            onSelected: (item) => handleClick(item, ref),
+            itemBuilder: (context) => [
+              PopupMenuItem<int>(value: 0, child: Text('Logout')),
+              PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
+            ],
+          ),
+        ],
+      ),
+      drawer: MainDrawer(),
       body: FutureBuilder(
         future: userData,
         builder: ((context, snapshot) {
@@ -37,15 +37,15 @@ class ListaUserScreen extends ConsumerWidget {
                 return ExpansionTile(
                   title: Text(user[index].name),
                   subtitle: Text(user[index].email),
-                  leading: Text(user[index].phone),
+                  // leading: Text(user[index].phone),
                   children: [Text(user[index].username)],
                 );
               },
             );
           } else if (snapshot.hasError) {
-            return Text(snapshot.hasError.toString());
+            return Center(child: Text('Não foi possível obter os dados'));
           } else {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
         }),
       ),

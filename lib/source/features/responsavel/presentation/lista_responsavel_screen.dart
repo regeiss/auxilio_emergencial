@@ -1,8 +1,4 @@
-// ignore: file_names
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gtk_flutter/source/features/responsavel/data/responsavel_repository.dart';
 import 'package:gtk_flutter/source/features/responsavel/domain/responsavel.dart';
@@ -33,9 +29,9 @@ class ListaResponsavelScreen extends ConsumerWidget {
               },
             );
           } else if (snapshot.hasError) {
-            return Text(snapshot.hasError.toString());
+            return Center(child: Text('Não foi possível obter os dados'));
           } else {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
         }),
       ),

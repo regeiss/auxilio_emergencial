@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:gtk_flutter/source/common_widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends ConsumerWidget {
           title: const Text(Strings.homePage),
           actions: <Widget>[
             PopupMenuButton<int>(
-              onSelected: (item) => handleClick(item, ref),
+              onSelected: (item) => handleClick(item, ref, context),
               itemBuilder: (context) => [
                 PopupMenuItem<int>(value: 0, child: Text('Logout')),
                 PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
@@ -80,13 +81,34 @@ class HomeScreen extends ConsumerWidget {
         ));
   }
 
-  void handleClick(int item, WidgetRef ref) {
+  void handleClick(int item, WidgetRef ref, BuildContext context) {
     switch (item) {
       case 0:
-        ref.read(firebaseAuthProvider).signOut();
+        _showAlertDialog(context);
+        // ref.read(firebaseAuthProvider).signOut();
         break;
       case 1:
         break;
     }
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert Dialog Title'),
+          content: Text('This is a simple alert dialog.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

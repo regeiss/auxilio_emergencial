@@ -10,15 +10,18 @@ class ApiService {
 
   Future<List<Responsavel>> getResponsavel() async {
     try {
-      final location = await getLocation();
-      lat = location.latitude;
-      lon = location.longitude;
+      // final location = await getLocation();
+      // lat = location.latitude;
+      // lon = location.longitude;
 
       //String baseUrl = 'http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis';
-      var response = await Dio(options).get('http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis');
+      var response = await Dio(options).get(
+          'http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis');
       var responsaveis = (response.data as List);
 
-      List<Responsavel> allUser = responsaveis.map((responsaveisData) => Responsavel.fromJson(responsaveisData)).toList();
+      List<Responsavel> allUser = responsaveis
+          .map((responsaveisData) => Responsavel.fromJson(responsaveisData))
+          .toList();
 
       if (response.statusCode == 200) {
         return allUser;

@@ -10,6 +10,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_auth
   firebase_core
   firebase_storage
+  flutter_platform_alert
   flutter_secure_storage_windows
   geolocator_windows
 )
