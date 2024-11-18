@@ -1,20 +1,35 @@
+import 'dart:io';
+
+import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:gtk_flutter/source/features/responsavel/application/geolocator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gtk_flutter/source/features/responsavel/domain/responsavel.dart';
 import 'dart:developer';
 import 'package:gtk_flutter/source/utils/logging.dart';
 
 class ApiService {
-  static double lat = 0.0;
-  static double lon = 0.0;
+  final dio = Dio(
+    BaseOptions(
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.acceptHeader: "application/json",
+      },
+      connectTimeout: Duration(seconds: 5),
+      receiveTimeout: Duration(seconds: 3),
+    ),
+  );
 
   Future<List<Responsavel>> getResponsavel() async {
     try {
-      // final location = await getLocation();
-      // lat = location.latitude;
-      // lon = location.longitude;
-
       //String baseUrl = 'http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis';
+
+      if (kDebugMode) {
+        dio.interceptors.add(AwesomeDioInterceptor(
+          logRequestHeaders: true,
+          logRequestTimeout: true,
+          logResponseHeaders: true,
+        ));
+      }
       var response = await Dio(options).get(
           'http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis');
       var responsaveis = (response.data as List);
@@ -31,7 +46,6 @@ class ApiService {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
       if (e.response != null) {
-        // log(e.response.statusMessage);
         log('${e.response?.statusMessage}');
         log('${e.response?.statusCode}');
       } else {

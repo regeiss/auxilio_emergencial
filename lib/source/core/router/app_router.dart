@@ -186,7 +186,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 path: '/responsavel',
                 name: AppRoute.responsavel.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: ListaUserScreen(),
+                  child: ListaResponsavelScreen(),
                 ),
               ),
             ],

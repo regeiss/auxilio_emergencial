@@ -1,17 +1,37 @@
+import 'dart:io';
+
+import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:gtk_flutter/source/features/responsavel/application/geolocator.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'dart:developer';
 import 'package:gtk_flutter/source/utils/logging.dart';
 
 class UserApiService {
-  static double lat = 0.0;
-  static double lon = 0.0;
+  final dio = Dio(
+    BaseOptions(
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.acceptHeader: "application/json",
+      },
+      connectTimeout: Duration(seconds: 5),
+      receiveTimeout: Duration(seconds: 3),
+    ),
+  );
+  // dio.options.connectTimeout = Duration(seconds: 5);
+  // dio.options.receiveTimeout = Duration(seconds: 3);
 
   Future<List<User>> getUser() async {
     try {
+      dio.interceptors.add(
+        AwesomeDioInterceptor(
+          logRequestHeaders: false,
+          logRequestTimeout: false,
+          logResponseHeaders: false,
+        ),
+      );
       var response =
-          await Dio(options).get('https://jsonplaceholder.typicode.com/users');
+          await dio.get('https://jsonplaceholder.typicode.com/users');
+
       var users = (response.data as List);
 
       List<User> allUser = users
@@ -36,10 +56,4 @@ class UserApiService {
     }
     return [];
   }
-
-  final options = BaseOptions(
-    //baseUrl: '',
-    connectTimeout: Duration(seconds: 5),
-    receiveTimeout: Duration(seconds: 3),
-  );
 }
