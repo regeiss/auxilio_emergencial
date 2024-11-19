@@ -32,7 +32,6 @@ class DioFactory {
         logResponseHeaders: false,
       ));
     }
-
     return dio;
   }
 }
