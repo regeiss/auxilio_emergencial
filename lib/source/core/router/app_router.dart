@@ -12,7 +12,6 @@ import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repositor
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
 import 'package:gtk_flutter/source/features/responsavel/presentation/lista_responsavel_screen.dart';
-import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 part 'app_router.g.dart';

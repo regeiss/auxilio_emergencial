@@ -15,7 +15,7 @@ class ApiService {
         HttpHeaders.acceptHeader: "application/json",
       },
       connectTimeout: Duration(seconds: 5),
-      receiveTimeout: Duration(seconds: 3),
+      receiveTimeout: Duration(seconds: 35),
     ),
   );
 
@@ -25,12 +25,12 @@ class ApiService {
 
       if (kDebugMode) {
         dio.interceptors.add(AwesomeDioInterceptor(
-          logRequestHeaders: true,
+          logRequestHeaders: false,
           logRequestTimeout: true,
-          logResponseHeaders: true,
+          logResponseHeaders: false,
         ));
       }
-      var response = await Dio(options).get(
+      var response = await dio.get(
           'http://apireconstrucao.novohamburgo.rs.gov.br/api/buscar_responsaveis');
       var responsaveis = (response.data as List);
 
@@ -55,10 +55,4 @@ class ApiService {
     }
     return [];
   }
-
-  final options = BaseOptions(
-    //baseUrl: 'https://api.pub.dev',
-    connectTimeout: Duration(seconds: 5),
-    receiveTimeout: Duration(seconds: 3),
-  );
 }

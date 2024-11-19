@@ -1,9 +1,7 @@
 // Este arquivo pode mais tarde ir para uma pasta geral.
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show immutable;
-import 'package:gtk_flutter/source/core/network/constants/api_keys.dart';
 import 'package:gtk_flutter/source/features/responsavel/application/geolocator.dart';
-import 'package:gtk_flutter/source/features/responsavel/domain/responsavel.dart';
 
 @immutable
 class ApiHelper {
