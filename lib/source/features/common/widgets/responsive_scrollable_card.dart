@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gtk_flutter/source/common_widgets/responsive_center.dart';
+import 'package:gtk_flutter/source/features/common/widgets/responsive_center.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/constants/breakpoints.dart';
 

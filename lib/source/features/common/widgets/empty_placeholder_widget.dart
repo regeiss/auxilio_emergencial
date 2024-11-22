@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gtk_flutter/source/common_widgets/primary_button.dart';
+import 'package:gtk_flutter/source/features/common/widgets/primary_button.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
@@ -28,8 +28,10 @@ class EmptyPlaceholderWidget extends ConsumerWidget {
             gapH32,
             PrimaryButton(
               onPressed: () {
-                final isLoggedIn = ref.watch(authRepositoryProvider).currentUser != null;
-                context.goNamed(isLoggedIn ? AppRoute.home.name : AppRoute.signIn.name);
+                final isLoggedIn =
+                    ref.watch(authRepositoryProvider).currentUser != null;
+                context.goNamed(
+                    isLoggedIn ? AppRoute.home.name : AppRoute.signIn.name);
               },
               text: 'Go Home',
             )

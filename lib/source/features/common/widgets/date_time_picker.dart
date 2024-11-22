@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:gtk_flutter/source/common_widgets/input_dropdown.dart';
+import 'package:gtk_flutter/source/features/common/widgets/input_dropdown.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/utils/format.dart';
 
@@ -33,7 +33,8 @@ class DateTimePicker extends StatelessWidget {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final pickedTime = await showTimePicker(context: context, initialTime: selectedTime);
+    final pickedTime =
+        await showTimePicker(context: context, initialTime: selectedTime);
     if (pickedTime != null && pickedTime != selectedTime) {
       onSelectedTime?.call(pickedTime);
     }

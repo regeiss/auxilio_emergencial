@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gtk_flutter/source/common_widgets/drawer.dart';
+import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +10,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final actions = AppBarPopUpMenuActions();
-
     return Scaffold(
         appBar: AppBar(
           title: const Text(Strings.homePage),

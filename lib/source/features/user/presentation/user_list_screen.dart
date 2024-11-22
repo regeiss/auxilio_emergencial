@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gtk_flutter/source/common_widgets/drawer.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
+import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/data/user_repository.dart';
+import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 
 class ListaUserScreen extends ConsumerWidget {
   const ListaUserScreen({super.key});
@@ -12,12 +15,14 @@ class ListaUserScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // ignore: unused_local_variable
     final userData = ref.watch(userDataProvider.future);
+    final actions = AppBarPopUpMenuActions();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('User'),
         actions: <Widget>[
           PopupMenuButton<int>(
-            onSelected: (item) => handleClick(item, ref),
+            onSelected: (item) => actions.handleClick(item, context, ref),
             itemBuilder: (context) => [
               PopupMenuItem<int>(value: 0, child: Text('Logout')),
               PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
@@ -34,12 +39,15 @@ class ListaUserScreen extends ConsumerWidget {
             return ListView.builder(
               itemCount: user.length,
               itemBuilder: (context, index) {
-                return ExpansionTile(
-                  title: Text(user[index].name),
-                  subtitle: Text(user[index].email),
-                  // leading: Text(user[index].phone),
-                  children: [Text(user[index].username)],
-                );
+                return ListTile(
+                    title: Text(user[index].name),
+                    subtitle: Text(user[index].email),
+                    onTap: () => context.goNamed(
+                          AppRoute.editresponsavel.name,
+                          pathParameters: {'id': user[index].username},
+                          extra: user,
+                          // leading: Text(user[index].phone),
+                        ));
               },
             );
           } else if (snapshot.hasError) {
@@ -50,14 +58,5 @@ class ListaUserScreen extends ConsumerWidget {
         }),
       ),
     );
-  }
-
-  void handleClick(int item, WidgetRef ref) {
-    switch (item) {
-      case 0:
-        break;
-      case 1:
-        break;
-    }
   }
 }
