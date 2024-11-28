@@ -30,10 +30,16 @@ Future<void> main() async {
   }
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  if (kIsWeb) {
+    FlutterNativeSplash.remove();
+  } else {
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  }
   registerErrorHandlers();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const ProviderScope(child: MainApp()));
-  FlutterNativeSplash.remove();
+  if (!kIsWeb) {
+    FlutterNativeSplash.remove();
+  }
 }

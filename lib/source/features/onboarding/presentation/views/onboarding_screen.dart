@@ -17,99 +17,100 @@ class OnboardingScreen extends ConsumerWidget {
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: Colors.white,
-      skipStyle: ButtonStyle(textStyle: WidgetStateProperty.all(TextStyle(fontSize: 17)), foregroundColor: WidgetStateProperty.all(Colors.redAccent)),
+      skipStyle: ButtonStyle(
+          textStyle: WidgetStateProperty.all(TextStyle(fontSize: 17)),
+          foregroundColor: WidgetStateProperty.all(Colors.redAccent)),
       allowImplicitScrolling: true,
       autoScrollDuration: 300000,
       infiniteAutoScroll: true,
       pages: [
         PageViewModel(
-          title: '',
+          title: 'Página 1',
           bodyWidget: Column(
             children: [
               Text('Lorem Ipsum sic amet',
-                  style: GoogleFonts.mochiyPopOne(fontSize: 25, fontWeight: FontWeight.w500, color: const Color.fromARGB(255, 248, 64, 64))),
+                  style: GoogleFonts.mochiyPopOne(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 248, 64, 64))),
               const SizedBox(height: 20),
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "",
-          bodyWidget: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            // mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-              const SizedBox(height: 20),
-              Text('Lorem Ipsum sic amet',
-                  textAlign: TextAlign.left,
-                  style: GoogleFonts.mochiyPopOne(fontSize: 30, fontWeight: FontWeight.w500, color: Color.fromARGB(255, 119, 56, 199)))
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "",
-          bodyWidget: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Lorem Ipsum sic amet',
-                  style: GoogleFonts.mochiyPopOne(fontSize: 33, fontWeight: FontWeight.w500, color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "Lorem",
-          bodyWidget: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-              const SizedBox(height: 20),
-              Text('Lorem Ipsum sic amet',
-                  style: GoogleFonts.mochiyPopOne(fontSize: 33, fontWeight: FontWeight.w500, color: const Color.fromARGB(255, 119, 56, 199))),
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "",
-          bodyWidget: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Lorem Ipsum sic amet',
-                  style: GoogleFonts.mochiyPopOne(fontSize: 33, fontWeight: FontWeight.w500, color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "",
-          bodyWidget: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const Image(image: AssetImage('assets/image_placeholder.png')),
-              const SizedBox(height: 20),
-              Text('Lorem Ipsum sic amet',
-                  style: GoogleFonts.mochiyPopOne(fontSize: 33, fontWeight: FontWeight.w500, color: const Color.fromARGB(255, 119, 56, 199))),
-            ],
-          ),
-        ),
-        PageViewModel(
-          title: "",
-          bodyWidget: Column(
-            children: [
-              Text("Lorem Ipsum sic amet!",
-                  style: GoogleFonts.mochiyPopOne(fontSize: 28, fontWeight: FontWeight.w500, color: Color.fromARGB(255, 40, 183, 125))),
-              const SizedBox(height: 30),
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
                 fit: BoxFit.contain,
               ),
-              const SizedBox(height: 30),
-              Text("Ameno dori me ",
-                  style: GoogleFonts.mochiyPopOne(fontSize: 28, fontWeight: FontWeight.w500, color: Color.fromARGB(255, 37, 119, 128))),
+            ],
+          ),
+        ),
+        PageViewModel(
+          title: 'Página 2',
+          bodyWidget: Column(
+            children: [
+              Text('Lorem Ipsum sic amet',
+                  style: GoogleFonts.mochiyPopOne(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 248, 64, 64))),
+              const SizedBox(height: 20),
+              Image(
+                image: const AssetImage('assets/image_placeholder.png'),
+                height: MediaQuery.of(context).size.height / 2,
+                fit: BoxFit.contain,
+              ),
+            ],
+          ),
+        ),
+        PageViewModel(
+          title: 'Página 3',
+          bodyWidget: Column(
+            children: [
+              Text('Lorem Ipsum sic amet',
+                  style: GoogleFonts.mochiyPopOne(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 248, 64, 64))),
+              const SizedBox(height: 20),
+              Image(
+                image: const AssetImage('assets/image_placeholder.png'),
+                height: MediaQuery.of(context).size.height / 2,
+                fit: BoxFit.contain,
+              ),
+            ],
+          ),
+        ),
+        PageViewModel(
+          title: 'Página 4',
+          bodyWidget: Column(
+            children: [
+              Text('Lorem Ipsum sic amet',
+                  style: GoogleFonts.mochiyPopOne(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 248, 64, 64))),
+              const SizedBox(height: 20),
+              Image(
+                image: const AssetImage('assets/image_placeholder.png'),
+                height: MediaQuery.of(context).size.height / 2,
+                fit: BoxFit.contain,
+              ),
+            ],
+          ),
+        ),
+        PageViewModel(
+          title: 'Página 5',
+          bodyWidget: Column(
+            children: [
+              Text('Lorem Ipsum sic amet',
+                  style: GoogleFonts.mochiyPopOne(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 248, 64, 64))),
+              const SizedBox(height: 20),
+              Image(
+                image: const AssetImage('assets/image_placeholder.png'),
+                height: MediaQuery.of(context).size.height / 2,
+                fit: BoxFit.contain,
+              ),
             ],
           ),
         ),
@@ -122,15 +123,22 @@ class OnboardingScreen extends ConsumerWidget {
       next: const Icon(
         Icons.arrow_forward,
       ),
-      done: const Text('Pronto', style: TextStyle(fontWeight: FontWeight.w600, color: Color.fromARGB(255, 248, 64, 64))),
+      done: const Text('Pronto',
+          style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Color.fromARGB(255, 248, 64, 64))),
       onDone: () async {
         bool isLoading = state.isLoading;
-        await ref.read(onboardingControllerProvider.notifier).completeOnboarding();
+        await ref
+            .read(onboardingControllerProvider.notifier)
+            .completeOnboarding();
         if (context.mounted) {
           context.goNamed(AppRoute.signIn.name);
         }
       },
-      nextStyle: ButtonStyle(foregroundColor: WidgetStateProperty.all(Color.fromARGB(255, 248, 64, 64))),
+      nextStyle: ButtonStyle(
+          foregroundColor:
+              WidgetStateProperty.all(Color.fromARGB(255, 248, 64, 64))),
       dotsDecorator: const DotsDecorator(
         size: Size.square(10),
         activeColor: Colors.redAccent,
