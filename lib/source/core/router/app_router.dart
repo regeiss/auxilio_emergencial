@@ -12,6 +12,7 @@ import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repositor
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
 import 'package:gtk_flutter/source/features/responsavel/presentation/lista_responsavel_screen.dart';
+import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -188,18 +189,24 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: '/responsavel',
                 name: AppRoute.responsavel.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
+                pageBuilder: (context, state) => NoTransitionPage(
+                  key: state.pageKey,
                   child: ListaUserScreen(),
                 ),
                 routes: [
                   GoRoute(
-                    path: 'edit',
+                    path: ':id',
                     name: AppRoute.editresponsavel.name,
                     parentNavigatorKey: _rootNavigatorKey,
                     pageBuilder: (context, state) {
-                      return const MaterialPage(
-                        fullscreenDialog: true,
-                        child: UserDetalheScreen(),
+                      final id =
+                          int.parse(state.pathParameters['id'] as String);
+                      final user =
+                          state.extra is User ? state.extra as User : null;
+                      return MaterialPage(
+                        // fullscreenDialog: true,
+                        key: state.pageKey,
+                        child: UserDetalheScreen(userId: id, user: user),
                       );
                     },
                   ),

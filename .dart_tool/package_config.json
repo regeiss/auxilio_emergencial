@@ -302,6 +302,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "envied",
+      "rootUri": "file:///C:/Users/robertogeiss/AppData/Local/Pub/Cache/hosted/pub.dev/envied-0.5.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "envied_generator",
+      "rootUri": "file:///C:/Users/robertogeiss/AppData/Local/Pub/Cache/hosted/pub.dev/envied_generator-0.5.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///C:/Users/robertogeiss/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -1100,6 +1112,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "recase",
+      "rootUri": "file:///C:/Users/robertogeiss/AppData/Local/Pub/Cache/hosted/pub.dev/recase-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "riverpod",
       "rootUri": "file:///C:/Users/robertogeiss/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-3.0.0-dev.3",
       "packageUri": "lib/",
@@ -1430,7 +1448,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-11-28T19:44:33.023496Z",
+  "generated": "2024-12-02T18:58:22.147746Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///c:/flutter",

@@ -15,30 +15,33 @@ class CustomSignInScreen extends ConsumerWidget {
         appBar: AppBar(
           title: const Text('Entrar'),
         ),
-        body: SignInBody(
-            //providers: authProviders,
-            //footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
-            ));
-  }
-}
-
-class SignInBody extends ConsumerWidget {
-  const SignInBody({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authProviders = ref.watch(authProvidersProvider);
-    return Center(
-      child: Card(
-          child: Column(children: <Widget>[
-        SignInScreen(
+        body: SignInScreen(
           providers: authProviders,
           footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
         )
-      ])),
-    );
+        //providers: authProviders,
+        //footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
+        );
   }
 }
+
+// class SignInBody extends ConsumerWidget {
+//   const SignInBody({super.key});
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final authProviders = ref.watch(authProvidersProvider);
+//     return Center(
+//       child: Card(
+//           child: Column(children: <Widget>[
+//         SignInScreen(
+//           providers: authProviders,
+//           footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
+//         )
+//       ])),
+//     );
+//   }
+// }
 
 class SignInAnonymouslyFooter extends ConsumerWidget {
   const SignInAnonymouslyFooter({super.key});

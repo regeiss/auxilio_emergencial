@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gtk_flutter/source/features/common/extensions/column_extension.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/data/user_repository.dart';
 
 class UserDetalheScreen extends ConsumerWidget {
-  const UserDetalheScreen({super.key});
+  const UserDetalheScreen(
+      {super.key, required this.userId, required this.user});
+
+  final int userId;
+  final User? user;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userData = ref.watch(userDataProvider.future);
+    // if (user != null) {}
+    // final userData = ref.watch(userDataProvider.future);
     return Scaffold(
       appBar: AppBar(
         title: const Text('User'),
@@ -24,30 +30,20 @@ class UserDetalheScreen extends ConsumerWidget {
           ),
         ],
       ),
-      drawer: MainDrawer(),
-      body: FutureBuilder(
-        future: userData,
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            List<User> user = snapshot.data!;
-            return ListView.builder(
-              itemCount: user.length,
-              itemBuilder: (context, index) {
-                return ExpansionTile(
-                  title: Text(user[index].name),
-                  subtitle: Text(user[index].email),
-                  // leading: Text(user[index].phone),
-                  children: [Text(user[index].username)],
-                );
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Não foi possível obter os dados'));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        }),
-      ),
+      // drawer: MainDrawer(),
+      body: Column(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(user!.id.toString()),
+          Text(user!.name),
+          Text(user!.phone),
+          Text(user!.address!.street),
+          Text(user!.address!.suite),
+          Text(user!.address!.geo!.lat),
+          Text(user!.address!.geo!.lng),
+        ],
+      ).wrap(margin: 2.0),
     );
   }
 

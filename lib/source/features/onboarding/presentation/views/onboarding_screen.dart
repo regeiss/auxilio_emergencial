@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/onboarding_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -33,7 +34,7 @@ class OnboardingScreen extends ConsumerWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
+              gapW20,
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
@@ -51,7 +52,7 @@ class OnboardingScreen extends ConsumerWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
+              gapW20,
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
@@ -69,7 +70,7 @@ class OnboardingScreen extends ConsumerWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
+              gapW20,
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
@@ -87,7 +88,7 @@ class OnboardingScreen extends ConsumerWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
+              gapW20,
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
@@ -105,7 +106,7 @@ class OnboardingScreen extends ConsumerWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 248, 64, 64))),
-              const SizedBox(height: 20),
+              gapW20,
               Image(
                 image: const AssetImage('assets/image_placeholder.png'),
                 height: MediaQuery.of(context).size.height / 2,
