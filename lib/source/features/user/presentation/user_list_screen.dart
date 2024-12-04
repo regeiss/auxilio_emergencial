@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
@@ -39,17 +38,80 @@ class ListaUserScreen extends ConsumerWidget {
                   return ListView.builder(
                     itemCount: user.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
+                      return Dismissible(
+                        direction: DismissDirection.endToStart,
+                        key: Key('item_${user[index].id}'),
+                        onDismissed: (direction) {
+                          if (direction == DismissDirection.endToStart) {
+                            user.removeAt(index); // Update data source
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Item $index excluído')),
+                            );
+                          } else if (direction ==
+                              DismissDirection.startToEnd) {}
+                        },
+                        confirmDismiss: (direction) async {
+                          if (direction == DismissDirection.endToStart) {
+                            // Show a confirmation dialog for delete action
+                            final bool confirmDelete = await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Confirme a exclusão'),
+                                  content: Text(
+                                      'Você quer mesmo excluir este item?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('Cancelar'),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(false),
+                                    ),
+                                    TextButton(
+                                      child: Text('Excluir'),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(true),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            return confirmDelete;
+                          }
+                          return true;
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Icon(Icons.delete, color: Colors.white),
+                              Text('Excluir',
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                        ),
+                        secondaryBackground: Container(
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Icon(Icons.delete, color: Colors.white),
+                              Text('Excluir',
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                        ),
+                        child: ListTile(
                           title: Text(user[index].name),
                           subtitle: Text(user[index].email),
                           trailing: Icon(Icons.more_vert),
                           onTap: () => context.goNamed(
-                                AppRoute.editresponsavel.name,
-                                pathParameters: {
-                                  'id': user[index].id.toString()
-                                },
-                                extra: user[index],
-                              ));
+                            AppRoute.editresponsavel.name,
+                            pathParameters: {'id': user[index].id.toString()},
+                            extra: user[index],
+                          ),
+                        ),
+                      );
                     },
                   );
                 } else if (snapshot.hasError) {

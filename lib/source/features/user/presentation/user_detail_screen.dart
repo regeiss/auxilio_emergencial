@@ -32,18 +32,27 @@ class UserDetalheScreen extends ConsumerWidget {
       ),
       // drawer: MainDrawer(),
       body: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(user!.id.toString()),
-          Text(user!.name),
-          Text(user!.phone),
-          Text(user!.address!.street),
-          Text(user!.address!.suite),
-          Text(user!.address!.geo!.lat),
-          Text(user!.address!.geo!.lng),
-        ],
-      ).wrap(margin: 2.0),
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(user!.id.toString()),
+            Text(user!.name),
+            Text(user!.phone),
+            Text(user!.address!.street),
+            Text(user!.address!.suite),
+            Text(user!.address!.geo!.lat),
+            Text(user!.address!.geo!.lng),
+            OverflowBar(
+              spacing: 8,
+              overflowAlignment: OverflowBarAlignment.end,
+              overflowSpacing: 4,
+              alignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FilledButton(child: const Text('Cancelar'), onPressed: () {}),
+                FilledButton(child: const Text('OK'), onPressed: () {}),
+              ],
+            ),
+          ]).wrap(margin: 2.0),
     );
   }
 

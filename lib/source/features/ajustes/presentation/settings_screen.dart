@@ -38,9 +38,15 @@ class AjustesScreen extends ConsumerWidget {
               ),
               SettingsTile.switchTile(
                 onToggle: (value) {},
-                initialValue: true,
+                initialValue: false,
                 leading: Icon(Icons.format_paint),
                 title: Text('Habilitar tema customizado'),
+              ),
+              SettingsTile.switchTile(
+                onToggle: (value) {},
+                initialValue: false,
+                leading: Icon(Icons.dark_mode_outlined),
+                title: Text('Habilitar tema esccuro'),
               ),
             ],
           ),
