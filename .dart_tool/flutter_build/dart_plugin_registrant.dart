@@ -24,7 +24,6 @@ import 'package:flutter_keyboard_visibility_linux/flutter_keyboard_visibility_li
 import 'package:image_picker_linux/image_picker_linux.dart';
 import 'package:path_provider_linux/path_provider_linux.dart';
 import 'package:shared_preferences_linux/shared_preferences_linux.dart';
-import 'package:facebook_auth_desktop/facebook_auth_desktop.dart';
 import 'package:file_selector_macos/file_selector_macos.dart';
 import 'package:flutter_keyboard_visibility_macos/flutter_keyboard_visibility_macos.dart';
 import 'package:geolocator_apple/geolocator_apple.dart';
@@ -35,7 +34,6 @@ import 'package:shared_preferences_foundation/shared_preferences_foundation.dart
 import 'package:sqflite_darwin/sqflite_darwin.dart';
 import 'package:file_selector_windows/file_selector_windows.dart';
 import 'package:flutter_keyboard_visibility_windows/flutter_keyboard_visibility_windows.dart';
-import 'package:flutter_secure_storage_windows/flutter_secure_storage_windows.dart';
 import 'package:image_picker_windows/image_picker_windows.dart';
 import 'package:path_provider_windows/path_provider_windows.dart';
 import 'package:shared_preferences_windows/shared_preferences_windows.dart';
@@ -212,15 +210,6 @@ class _PluginRegistrant {
 
     } else if (Platform.isMacOS) {
       try {
-        FacebookAuthDesktopPlugin.registerWith();
-      } catch (err) {
-        print(
-          '`facebook_auth_desktop` threw an error: $err. '
-          'The app may not function as expected until you remove this plugin from pubspec.yaml'
-        );
-      }
-
-      try {
         FileSelectorMacOS.registerWith();
       } catch (err) {
         print(
@@ -307,15 +296,6 @@ class _PluginRegistrant {
       } catch (err) {
         print(
           '`flutter_keyboard_visibility_windows` threw an error: $err. '
-          'The app may not function as expected until you remove this plugin from pubspec.yaml'
-        );
-      }
-
-      try {
-        FlutterSecureStorageWindows.registerWith();
-      } catch (err) {
-        print(
-          '`flutter_secure_storage_windows` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
       }
