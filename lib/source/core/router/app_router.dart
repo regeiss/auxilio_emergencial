@@ -13,6 +13,7 @@ import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboar
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
 import 'package:gtk_flutter/source/features/responsavel/presentation/lista_responsavel_screen.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
+import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -24,10 +25,8 @@ final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _cadastroNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'cadastro');
 final _abrigoNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'abrigo');
 final _listaNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'lista');
-final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
+// final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
 final _responsavelNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'responsavel');
-final _ajustesNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'responsavel');
 
 enum AppRoute {
@@ -39,6 +38,7 @@ enum AppRoute {
   abrigos,
   listas,
   responsavel,
+  pesquisaresponsavel,
   addresponsavel,
   editresponsavel,
   perfil,
@@ -118,6 +118,20 @@ GoRouter goRouter(GoRouterRef ref) {
           child: CustomSignInScreen(),
         ),
       ),
+      GoRoute(
+        path: '/ajustes',
+        name: AppRoute.ajustes.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: AjustesScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/perfil',
+        name: AppRoute.perfil.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: ProfileScreen(),
+        ),
+      ),
       StatefulShellRoute.indexedStack(
         pageBuilder: (context, state, navigationShell) => NoTransitionPage(
           child: ScaffoldWithNestedNavigation(navigationShell: navigationShell),
@@ -141,7 +155,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: '/cadastro',
                 name: AppRoute.cadastro.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
+                pageBuilder: (context, state) => NoTransitionPage(
                   child: PlaceholderScreen(),
                 ),
               ),
@@ -153,7 +167,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: '/abrigo',
                 name: AppRoute.abrigos.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
+                pageBuilder: (context, state) => NoTransitionPage(
                   child: PlaceholderScreen(),
                 ),
               ),
@@ -171,18 +185,18 @@ GoRouter goRouter(GoRouterRef ref) {
               ),
             ],
           ),
-          StatefulShellBranch(
-            navigatorKey: _perfilNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/perfil',
-                name: AppRoute.perfil.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: ProfileScreen(),
-                ),
-              ),
-            ],
-          ),
+          // StatefulShellBranch(
+          //   navigatorKey: _perfilNavigatorKey,
+          //   routes: [
+          //     GoRoute(
+          //       path: '/perfil',
+          //       name: AppRoute.perfil.name,
+          //       pageBuilder: (context, state) => const NoTransitionPage(
+          //         child: ProfileScreen(),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           StatefulShellBranch(
             navigatorKey: _responsavelNavigatorKey,
             routes: [
@@ -210,19 +224,23 @@ GoRouter goRouter(GoRouterRef ref) {
                       );
                     },
                   ),
+                  GoRoute(
+                    path: 'responsavel/add',
+                    name: AppRoute.addresponsavel.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (context, state) {
+                      // final id =
+                      //     int.parse(state.pathParameters['id'] as String);
+                      // final user =
+                      //     state.extra is User ? state.extra as User : null;
+                      return MaterialPage(
+                        // fullscreenDialog: true,
+                        key: state.pageKey,
+                        child: UserAddScreen(),
+                      );
+                    },
+                  ),
                 ],
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _ajustesNavigatorKey,
-            routes: [
-              GoRoute(
-                path: '/ajustes',
-                name: AppRoute.ajustes.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: AjustesScreen(),
-                ),
               ),
             ],
           ),
