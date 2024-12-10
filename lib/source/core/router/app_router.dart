@@ -185,18 +185,6 @@ GoRouter goRouter(GoRouterRef ref) {
               ),
             ],
           ),
-          // StatefulShellBranch(
-          //   navigatorKey: _perfilNavigatorKey,
-          //   routes: [
-          //     GoRoute(
-          //       path: '/perfil',
-          //       name: AppRoute.perfil.name,
-          //       pageBuilder: (context, state) => const NoTransitionPage(
-          //         child: ProfileScreen(),
-          //       ),
-          //     ),
-          //   ],
-          // ),
           StatefulShellBranch(
             navigatorKey: _responsavelNavigatorKey,
             routes: [
@@ -229,10 +217,6 @@ GoRouter goRouter(GoRouterRef ref) {
                     name: AppRoute.addresponsavel.name,
                     parentNavigatorKey: _rootNavigatorKey,
                     pageBuilder: (context, state) {
-                      // final id =
-                      //     int.parse(state.pathParameters['id'] as String);
-                      // final user =
-                      //     state.extra is User ? state.extra as User : null;
                       return MaterialPage(
                         // fullscreenDialog: true,
                         key: state.pageKey,

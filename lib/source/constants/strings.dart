@@ -23,4 +23,6 @@ class Strings {
 
   static const String account = 'Conta';
   static const String accountPage = 'Página Conta';
+  // Ajustes page
+  static const String ajustes = 'Ajustes';
 }

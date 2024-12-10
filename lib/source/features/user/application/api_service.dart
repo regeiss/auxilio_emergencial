@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
@@ -17,8 +16,6 @@ class UserApiService {
       receiveTimeout: Duration(seconds: 3),
     ),
   );
-  // dio.options.connectTimeout = Duration(seconds: 5);
-  // dio.options.receiveTimeout = Duration(seconds: 3);
 
   Future<List<User>> getUser() async {
     try {
@@ -29,14 +26,10 @@ class UserApiService {
           logResponseHeaders: false,
         ),
       );
-      var response =
-          await dio.get('https://jsonplaceholder.typicode.com/users');
-
+      var response = await dio.get('https://jsonplaceholder.typicode.com/users');
       var users = (response.data as List);
 
-      List<User> allUser = users
-          .map((responsaveisData) => User.fromJson(responsaveisData))
-          .toList();
+      List<User> allUser = users.map((responsaveisData) => User.fromJson(responsaveisData)).toList();
 
       if (response.statusCode == 200) {
         return allUser;

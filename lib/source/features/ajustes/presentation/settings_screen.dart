@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 
-class AjustesScreen extends ConsumerWidget {
+class AjustesScreen extends HookWidget {
   const AjustesScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final actions = AppBarPopUpMenuActions();
-    // ignore: unused_local_variable
+  Widget build(BuildContext context) {
+    final useDarkMode = useState<bool>(false);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Strings.homePage),
+        title: const Text(Strings.ajustes),
         actions: <Widget>[
-          PopupMenuButton<int>(
-            onSelected: (item) => actions.handleClick(item, context, ref),
-            itemBuilder: (context) => [
-              PopupMenuItem<int>(value: 0, child: Text('Logout')),
-              PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
-            ],
+          TextButton(
+            onPressed: () {
+              context.goNamed(AppRoute.home.name);
+            },
+            child: Text('OK'),
           ),
         ],
       ),
@@ -37,7 +39,9 @@ class AjustesScreen extends ConsumerWidget {
                 value: Text('Português'),
               ),
               SettingsTile.switchTile(
-                onToggle: (value) {},
+                onToggle: (value) {
+                  useDarkMode.value = true;
+                },
                 initialValue: false,
                 leading: Icon(Icons.format_paint),
                 title: Text('Habilitar tema customizado'),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,6 +12,7 @@ class AppBarPopUpMenuActions {
         _showAlertDialog(context, ref);
         break;
       case 1:
+        context.goNamed(AppRoute.ajustes.name);
         break;
     }
   }
@@ -24,7 +27,6 @@ class AppBarPopUpMenuActions {
           actions: [
             TextButton(
               onPressed: () {
-                // ref.read(firebaseAuthProvider).signOut();
                 Navigator.of(context).pop();
               },
               child: Text(Strings.cancelar),

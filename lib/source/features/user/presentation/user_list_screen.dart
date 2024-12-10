@@ -20,15 +20,6 @@ class ListaUserScreen extends ConsumerWidget {
       appBar: AppBar(
         title: UserSearchBar(),
         actions: <Widget>[
-          // Padding(
-          //     padding: EdgeInsets.only(right: 20.0),
-          //     child: GestureDetector(
-          //       onTap: () {},
-          //       child: Icon(
-          //         Icons.search,
-          //         size: 26.0,
-          //       ),
-          //     )),
           PopupMenuButton<int>(
             onSelected: (item) => actions.handleClick(item, context, ref),
             itemBuilder: (context) => [
@@ -40,6 +31,9 @@ class ListaUserScreen extends ConsumerWidget {
       ),
       drawer: MainDrawer(),
       body: RefreshIndicator(
+          color: Colors.white,
+          backgroundColor: Colors.blue,
+          strokeWidth: 4.0,
           child: FutureBuilder(
             future: userData,
             builder: ((context, snapshot) {
@@ -67,18 +61,15 @@ class ListaUserScreen extends ConsumerWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Text('Confirme a exclusão'),
-                                content:
-                                    Text('Você quer mesmo excluir este item?'),
+                                content: Text('Você quer mesmo excluir este item?'),
                                 actions: <Widget>[
                                   TextButton(
                                     child: Text('Cancelar'),
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(false),
+                                    onPressed: () => Navigator.of(context).pop(false),
                                   ),
                                   TextButton(
                                     child: Text('Excluir'),
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(true),
+                                    onPressed: () => Navigator.of(context).pop(true),
                                   ),
                                 ],
                               );
@@ -94,22 +85,10 @@ class ListaUserScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Icon(Icons.delete, color: Colors.white),
-                            Text('Excluir',
-                                style: TextStyle(color: Colors.white)),
+                            Text('Excluir', style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
-                      // secondaryBackground: Container(
-                      //   color: Colors.yellow,
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.end,
-                      //     children: <Widget>[
-                      //       Icon(Icons.delete, color: Colors.white),
-                      //       Text('Excluir',
-                      //           style: TextStyle(color: Colors.white)),
-                      //     ],
-                      //   ),
-                      // ),
                       child: ListTile(
                         title: Text(user[index].name),
                         subtitle: Text(user[index].email),
@@ -124,7 +103,24 @@ class ListaUserScreen extends ConsumerWidget {
                   },
                 );
               } else if (snapshot.hasError) {
-                return Center(child: Text('Não foi possível obter os dados'));
+                return Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                      Text('Não foi possível obter os dados'),
+                      ElevatedButton(
+                        onPressed: () async {
+                          ref.invalidate(userDataProvider);
+                          try {
+                            ref.read(userDataProvider);
+                          } catch (e) {
+                            // fail silently as the provider error state is handled inside the ListView
+                          }
+                        },
+                        child: const Text('Retry'),
+                      ),
+                    ]));
               } else {
                 return Center(child: CircularProgressIndicator());
               }
