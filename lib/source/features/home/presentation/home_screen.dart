@@ -36,42 +36,42 @@ class HomeScreen extends ConsumerWidget {
                 children: <Widget>[
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.green[100],
+                    color: Colors.green,
                     child: const Text("Area 1"),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.green[200],
+                    color: Colors.green,
                     child: const Text('Area 2'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.blue[300],
+                    color: Colors.blue,
                     child: const Text('Area 3'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.blue[400],
+                    color: Colors.blue,
                     child: const Text('Area 4'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.orange[500],
+                    color: Colors.orange,
                     child: const Text('Area 5'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.orange[600],
+                    color: Colors.orange,
                     child: const Text('Area 6'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.red[700],
+                    color: Colors.red,
                     child: const Text('Area 7'),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    color: Colors.red[800],
+                    color: Colors.red,
                     child: const Text('Area 8'),
                   ),
                 ],

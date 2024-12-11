@@ -58,6 +58,8 @@ dependencies:
   form_builder_validators: ^11.0.0
   intl_translation: ^0.20.1
   flutter_hooks: ^0.20.5
+  flex_seed_scheme: ^3.4.1
+  babstrap_settings_screen: ^0.1.7
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +94,7 @@ flutter:
     - assets/capa.png
     - assets/time-tracking.svg
     - assets/codelab.png
+    - assets/user.png
 
 fonts:
   - family: SocialIcons

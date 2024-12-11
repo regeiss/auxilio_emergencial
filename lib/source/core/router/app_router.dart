@@ -11,7 +11,6 @@ import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
-import 'package:gtk_flutter/source/features/responsavel/presentation/lista_responsavel_screen.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
