@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/extensions/column_extension.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UserAddScreen extends ConsumerWidget {
+class UserAddScreen extends HookConsumerWidget {
   UserAddScreen({
     super.key,
   });
@@ -23,12 +26,39 @@ class UserAddScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // if (user != null) {}
-    // final userData = ref.watch(userDataProvider.future);
+    final contaAlteracao = useState(0);
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('Incluir novo'),
           actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                if (contaAlteracao.value == 0) {
+                  context.pop();
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Confirme cancelar'),
+                          content: Text('Há alterações no item, cancelar mesmo assim?'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('Sim'),
+                              onPressed: () => context.goNamed(AppRoute.responsavel.name),
+                            ),
+                            TextButton(
+                              child: Text('Não'),
+                              onPressed: () => context.pop(),
+                            ),
+                          ],
+                        );
+                      });
+                }
+              },
+              child: Text('Cancelar'),
+            ),
             TextButton(
               onPressed: () {
                 // Your action here
@@ -40,6 +70,7 @@ class UserAddScreen extends ConsumerWidget {
         // drawer: MainDrawer(),
         body: FormBuilder(
             key: _formKey,
+            onChanged: () => contaAlteracao.value++,
             child: SingleChildScrollView(
               child: Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,14 +139,5 @@ class UserAddScreen extends ConsumerWidget {
                     ),
                   ]).wrap(margin: 2.0),
             )));
-  }
-
-  void handleClick(int item, WidgetRef ref) {
-    switch (item) {
-      case 0:
-        break;
-      case 1:
-        break;
-    }
   }
 }

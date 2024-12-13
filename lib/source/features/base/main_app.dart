@@ -29,10 +29,40 @@ class MainApp extends HookConsumerWidget {
       debugShowCheckedModeBanner: false,
       themeMode: appThemeState.isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(colorScheme: schemeLight),
-      darkTheme: ThemeData(colorScheme: schemeDarkHc),
+      darkTheme: ThemeData(colorScheme: schemeDark),
       // Temas de acessibilidade -- https://pub.dev/packages/flex_seed_scheme
       highContrastTheme: ThemeData(colorScheme: schemeLightHc),
       highContrastDarkTheme: ThemeData(colorScheme: schemeDarkHc),
     );
   }
+
+  // configs - grava ou recupera
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+        // Do something when the app is visible...
+        break;
+      case AppLifecycleState.hidden: // <-- This is the new state.
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        // Do something when the app is not visible...
+        break;
+    }
+  }
+
+  // As alterações são efetuadas pelo sistema. O app adapta o tema do sistema.
+  // ThemeData tema(AppThemeState appThemeState) {
+  //   if (appThemeState.isDarkModeEnabled && appThemeState.isHighContrastEnabled) {
+  //     return ThemeData(colorScheme: schemeDarkOnBW);
+  //   } else if (appThemeState.isDarkModeEnabled && !appThemeState.isHighContrastEnabled) {
+  //     return ThemeData(colorScheme: schemeDark);
+  //   } else if (!appThemeState.isDarkModeEnabled && appThemeState.isHighContrastEnabled) {
+  //     return ThemeData(colorScheme: schemeLightOnBW);
+  //   } else if (appThemeState.isDarkModeEnabled && !appThemeState.isHighContrastEnabled) {
+  //     return ThemeData(colorScheme: schemeDark);
+  //   }
+
+  //   return ThemeData(colorScheme: schemeLight);
+  // }
 }

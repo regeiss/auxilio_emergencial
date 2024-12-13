@@ -32,25 +32,6 @@ class AjustesScreen extends HookConsumerWidget {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            // User card
-            BigUserCard(
-              backgroundColor: Colors.red,
-              userName: "Sistemas Internos  ",
-              userProfilePic: AssetImage("assets/user.png"),
-              cardActionWidget: SettingsItem(
-                icons: Icons.edit,
-                iconStyle: IconStyle(
-                  withBackground: true,
-                  borderRadius: 50,
-                  backgroundColor: Colors.yellow[600],
-                ),
-                title: "Modificar",
-                subtitle: "Clique para alterar seus dados",
-                onTap: () {
-                  print("OK");
-                },
-              ),
-            ),
             SettingsGroup(
               backgroundColor: Colors.blue,
               items: [
@@ -144,21 +125,3 @@ class AjustesScreen extends HookConsumerWidget {
     );
   }
 }
-      
-      
-      
-      
-      
-//       Switch(
-//       value: appThemeState.isDarkModeEnabled,
-//       onChanged: (enabled) {
-//          if (enabled) {
-//           appThemeState.setDarkTheme();
-//         } else {
-//           appThemeState.setLightTheme();
-//         }
-//       },
-//       ),
-//     );
-//   }
-// }

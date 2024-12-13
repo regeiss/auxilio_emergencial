@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
@@ -81,12 +82,15 @@ class ListaUserScreen extends ConsumerWidget {
                       },
                       background: Container(
                         color: Colors.red,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Icon(Icons.delete, color: Colors.white),
-                            Text('Excluir', style: TextStyle(color: Colors.white)),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Icon(Icons.delete, color: Colors.white),
+                              Text('Excluir', style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
                         ),
                       ),
                       child: ListTile(

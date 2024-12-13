@@ -5,6 +5,7 @@ import 'package:gtk_flutter/source/features/base/main_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   void registerErrorHandlers() {
@@ -30,16 +31,11 @@ Future<void> main() async {
   }
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  if (kIsWeb) {
-    FlutterNativeSplash.remove();
-  } else {
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  }
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   registerErrorHandlers();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   runApp(const ProviderScope(child: MainApp()));
-  if (!kIsWeb) {
-    FlutterNativeSplash.remove();
-  }
+  FlutterNativeSplash.remove();
 }

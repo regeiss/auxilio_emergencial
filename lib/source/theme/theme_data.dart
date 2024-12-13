@@ -36,3 +36,19 @@ final ColorScheme schemeDarkHc = SeedColorScheme.fromSeeds(
   tertiaryKey: tertiarySeedColor,
   tones: FlexTones.ultraContrast(Brightness.dark),
 );
+
+final ColorScheme schemeLightOnBW = SeedColorScheme.fromSeeds(
+  brightness: Brightness.light,
+  primaryKey: primarySeedColor,
+  secondaryKey: secondarySeedColor,
+  tertiaryKey: tertiarySeedColor,
+  tones: FlexTones.material(Brightness.light).onMainsUseBW().onSurfacesUseBW(),
+);
+
+final ColorScheme schemeDarkOnBW = SeedColorScheme.fromSeeds(
+  brightness: Brightness.dark,
+  primaryKey: primarySeedColor,
+  secondaryKey: secondarySeedColor,
+  tertiaryKey: tertiarySeedColor,
+  tones: FlexTones.vivid(Brightness.dark).onMainsUseBW().onSurfacesUseBW(),
+);
