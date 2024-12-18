@@ -5,9 +5,8 @@ import 'package:gtk_flutter/source/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/source/core/router/presentation/not_found_page.dart';
 import 'package:gtk_flutter/source/core/router/scaffold_with_nested_navigation.dart';
 import 'package:gtk_flutter/source/features/ajustes/presentation/settings_screen.dart';
-import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
-import 'package:gtk_flutter/source/features/auth/presentation/custom_sign_in_screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
+import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
@@ -16,7 +15,6 @@ import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.da
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 part 'app_router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -25,8 +23,10 @@ final _cadastroNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'cadastro');
 final _abrigoNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'abrigo');
 final _listaNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'lista');
 // final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
-final _responsavelNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'responsavel');
+final _responsavelNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'responsavel');
+// teste
+final _searchNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'search');
+final _favoritesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'favorites');
 
 enum AppRoute {
   onboarding,
@@ -41,14 +41,17 @@ enum AppRoute {
   addresponsavel,
   editresponsavel,
   perfil,
-  ajustes
+  ajustes,
+  // testes
+  movies,
+  movie,
+  favorites,
 }
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   // rebuild GoRouter when app startup state changes
   final appStartupState = ref.watch(appStartupProvider);
-  final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
     initialLocation: '/signIn',
@@ -63,8 +66,7 @@ GoRouter goRouter(GoRouterRef ref) {
         return '/startup';
       }
 
-      final onboardingRepository =
-          ref.read(onboardingRepositoryProvider).requireValue;
+      final onboardingRepository = ref.read(onboardingRepositoryProvider).requireValue;
       final didCompleteOnboarding = onboardingRepository.isOnboardingComplete();
       final path = state.uri.path;
 
@@ -75,12 +77,10 @@ GoRouter goRouter(GoRouterRef ref) {
         return null;
       }
 
-      final isLoggedIn = authRepository.currentUser != null;
+      final isLoggedIn = true; //authRepository.currentUser != null;
 
       if (isLoggedIn) {
-        if (path.startsWith('/startup') ||
-            path.startsWith('/onboarding') ||
-            path.startsWith('/signIn')) {
+        if (path.startsWith('/startup') || path.startsWith('/onboarding') || path.startsWith('/signIn')) {
           return '/home';
         }
       } else {
@@ -93,7 +93,7 @@ GoRouter goRouter(GoRouterRef ref) {
       }
       return null;
     },
-    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
+    // refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: '/startup',
@@ -114,7 +114,7 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/signIn',
         name: AppRoute.signIn.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: CustomSignInScreen(),
+          child: PlaceholderScreen(),
         ),
       ),
       GoRoute(
@@ -128,7 +128,7 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/perfil',
         name: AppRoute.perfil.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: ProfileScreen(),
+          child: PlaceholderScreen(),
         ),
       ),
       StatefulShellRoute.indexedStack(
@@ -179,7 +179,7 @@ GoRouter goRouter(GoRouterRef ref) {
                 path: '/lista',
                 name: AppRoute.listas.name,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: PlaceholderScreen(),
+                  child: Localizacao(), // PlaceholderScreen(),
                 ),
               ),
             ],
@@ -200,10 +200,8 @@ GoRouter goRouter(GoRouterRef ref) {
                     name: AppRoute.editresponsavel.name,
                     parentNavigatorKey: _rootNavigatorKey,
                     pageBuilder: (context, state) {
-                      final id =
-                          int.parse(state.pathParameters['id'] as String);
-                      final user =
-                          state.extra is User ? state.extra as User : null;
+                      final id = int.parse(state.pathParameters['id'] as String);
+                      final user = state.extra is User ? state.extra as User : null;
                       return MaterialPage(
                         // fullscreenDialog: true,
                         key: state.pageKey,

@@ -71,9 +71,9 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
             label: 'Abrigos',
           ),
           NavigationDestination(
-            icon: const Icon(Icons.list),
-            selectedIcon: const Icon(Icons.list),
-            label: 'Listas',
+            icon: const Icon(Icons.map),
+            selectedIcon: const Icon(Icons.map_outlined),
+            label: 'Localização',
           ),
 
           NavigationDestination(
@@ -126,9 +126,9 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
                 label: Text('Abrigos'),
               ),
               NavigationRailDestination(
-                icon: const Icon(Icons.list),
-                selectedIcon: const Icon(Icons.list),
-                label: Text('Listas'),
+                icon: const Icon(Icons.map),
+                selectedIcon: const Icon(Icons.map_outlined),
+                label: Text('Localização'),
               ),
               NavigationRailDestination(
                 icon: const Icon(Icons.person_4),

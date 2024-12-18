@@ -10,6 +10,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final actions = AppBarPopUpMenuActions();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(Strings.homePage),

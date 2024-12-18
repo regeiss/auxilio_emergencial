@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
-import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AppBarPopUpMenuActions {
@@ -33,7 +32,6 @@ class AppBarPopUpMenuActions {
             ),
             TextButton(
               onPressed: () {
-                ref.read(firebaseAuthProvider).signOut();
                 Navigator.of(context).pop();
               },
               child: Text(Strings.ok),

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/extensions/column_extension.dart';
-import 'package:gtk_flutter/source/features/user/domain/user.dart';
+// import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,7 +31,7 @@ class UserAddScreen extends HookConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('Incluir novo'),
+          title: Text(Strings.novoIncluir),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -41,15 +42,15 @@ class UserAddScreen extends HookConsumerWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Confirme cancelar'),
-                          content: Text('Há alterações no item, cancelar mesmo assim?'),
+                          title: Text(Strings.confirmaCancelarTitulo),
+                          content: Text(Strings.confirmaExclusaoTexto),
                           actions: <Widget>[
                             TextButton(
-                              child: Text('Sim'),
+                              child: Text(Strings.sim),
                               onPressed: () => context.goNamed(AppRoute.responsavel.name),
                             ),
                             TextButton(
-                              child: Text('Não'),
+                              child: Text(Strings.nao),
                               onPressed: () => context.pop(),
                             ),
                           ],
@@ -57,13 +58,13 @@ class UserAddScreen extends HookConsumerWidget {
                       });
                 }
               },
-              child: Text('Cancelar'),
+              child: Text(Strings.cancelar),
             ),
             TextButton(
               onPressed: () {
                 // Your action here
               },
-              child: Text('Salvar'),
+              child: Text(Strings.salvar),
             )
           ],
         ),

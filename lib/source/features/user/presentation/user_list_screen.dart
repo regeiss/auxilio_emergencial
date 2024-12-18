@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gtk_flutter/source/constants/app_sizes.dart';
+import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/data/user_repository.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_search_bar.dart';
+import 'package:redacted/redacted.dart';
 
 class ListaUserScreen extends ConsumerWidget {
   const ListaUserScreen({super.key});
@@ -24,8 +25,8 @@ class ListaUserScreen extends ConsumerWidget {
           PopupMenuButton<int>(
             onSelected: (item) => actions.handleClick(item, context, ref),
             itemBuilder: (context) => [
-              PopupMenuItem<int>(value: 0, child: Text('Logout')),
-              PopupMenuItem<int>(value: 1, child: Text('Ajustes')),
+              PopupMenuItem<int>(value: 0, child: Text(Strings.logout)),
+              PopupMenuItem<int>(value: 1, child: Text(Strings.ajustes)),
             ],
           ),
         ],
@@ -61,15 +62,15 @@ class ListaUserScreen extends ConsumerWidget {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Confirme a exclusão'),
-                                content: Text('Você quer mesmo excluir este item?'),
+                                title: Text(Strings.confirmaExclusaoTitulo),
+                                content: Text(Strings.confirmaExclusaoTexto),
                                 actions: <Widget>[
                                   TextButton(
-                                    child: Text('Cancelar'),
+                                    child: Text(Strings.cancelar),
                                     onPressed: () => Navigator.of(context).pop(false),
                                   ),
                                   TextButton(
-                                    child: Text('Excluir'),
+                                    child: Text(Strings.excluir),
                                     onPressed: () => Navigator.of(context).pop(true),
                                   ),
                                 ],
@@ -88,7 +89,7 @@ class ListaUserScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Icon(Icons.delete, color: Colors.white),
-                              Text('Excluir', style: TextStyle(color: Colors.white)),
+                              Text(Strings.excluir, style: TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),
@@ -105,6 +106,12 @@ class ListaUserScreen extends ConsumerWidget {
                       ),
                     );
                   },
+                ).redacted(
+                  context: context,
+                  redact: true,
+                  configuration: RedactedConfiguration(
+                    animationDuration: const Duration(milliseconds: 800), //default
+                  ),
                 );
               } else if (snapshot.hasError) {
                 return Center(
@@ -112,7 +119,7 @@ class ListaUserScreen extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                      Text('Não foi possível obter os dados'),
+                      Text(Strings.dadosIndisponiveis),
                       ElevatedButton(
                         onPressed: () async {
                           ref.invalidate(userDataProvider);
@@ -122,7 +129,7 @@ class ListaUserScreen extends ConsumerWidget {
                             // fail silently as the provider error state is handled inside the ListView
                           }
                         },
-                        child: const Text('Retry'),
+                        child: const Text(Strings.repetir),
                       ),
                     ]));
               } else {
@@ -140,7 +147,7 @@ class ListaUserScreen extends ConsumerWidget {
           }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
-        tooltip: 'Increment',
+        tooltip: Strings.novo,
         onPressed: () => context.goNamed(
           AppRoute.addresponsavel.name,
         ),
