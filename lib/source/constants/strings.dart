@@ -10,6 +10,10 @@ class Strings {
   static const String novoIncluir = 'Incluir novo';
   static const String repetir = 'Repetir';
 
+  // Drawer
+  static const String empresa = 'Prefeitura Municipal \n Novo Hamburgo';
+  static const String centralAjuda = 'Central de ajuda';
+  static const String sobreApp = 'Sobre o app';
   static const String dialogoConfirmaAcao = 'Ação requerida';
   static const String dialogoSair = 'Tem certeza que deseja sair?';
 

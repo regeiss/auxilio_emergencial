@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/constants/strings.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
@@ -11,23 +14,22 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           const DrawerHeader(
+            curve: Curves.bounceInOut,
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Drawer cabecalho'),
+            child: Text(Strings.empresa),
           ),
           ListTile(
-            title: const Text('Item 1'),
+            title: const Text(Strings.centralAjuda),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              context.push('/ajuda');
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text(Strings.sobreApp),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              context.push('/sobre');
             },
           ),
         ],

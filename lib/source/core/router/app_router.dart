@@ -5,11 +5,13 @@ import 'package:gtk_flutter/source/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/source/core/router/presentation/not_found_page.dart';
 import 'package:gtk_flutter/source/core/router/scaffold_with_nested_navigation.dart';
 import 'package:gtk_flutter/source/features/ajustes/presentation/settings_screen.dart';
+import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
 import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
+import 'package:gtk_flutter/source/features/sobre/presentation/sobre_app.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
@@ -32,6 +34,8 @@ enum AppRoute {
   onboarding,
   startup,
   signIn,
+  ajuda,
+  sobre,
   home,
   cadastro,
   abrigos,
@@ -118,6 +122,13 @@ GoRouter goRouter(GoRouterRef ref) {
         ),
       ),
       GoRoute(
+        path: '/ajuda',
+        name: AppRoute.ajuda.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: CentralAjudaScreen(),
+        ),
+      ),
+      GoRoute(
         path: '/ajustes',
         name: AppRoute.ajustes.name,
         pageBuilder: (context, state) => const NoTransitionPage(
@@ -129,6 +140,13 @@ GoRouter goRouter(GoRouterRef ref) {
         name: AppRoute.perfil.name,
         pageBuilder: (context, state) => const NoTransitionPage(
           child: PlaceholderScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/sobre',
+        name: AppRoute.sobre.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: SobreAppScreen(),
         ),
       ),
       StatefulShellRoute.indexedStack(

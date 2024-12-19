@@ -9,7 +9,7 @@ class Localizacao extends StatefulWidget {
   const Localizacao({super.key});
 
   @override
-  _MapPageState createState() => _MapPageState();
+  State<Localizacao> createState() => _MapPageState();
 }
 
 class _MapPageState extends State<Localizacao> {
@@ -26,57 +26,74 @@ class _MapPageState extends State<Localizacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Localização'),
-        // actions: <Widget>[
-        //   PopupMenuButton<int>(
-        //     onSelected: (item) => actions.handleClick(item, context, ref),
-        //     itemBuilder: (context) => [
-        //       PopupMenuItem<int>(value: 0, child: Text(Strings.logout)),
-        //       PopupMenuItem<int>(value: 1, child: Text(Strings.ajustes)),
-        //     ],
-        //   ),
-        // ],
-      ),
-      drawer: MainDrawer(),
-      body: Column(
-        children: [
-          Expanded(
-            child: FlutterMap(
-              mapController: mapController,
-              options: MapOptions(
-                initialCenter: LatLng(
-                  currentLocation?.latitude ?? 0.0,
-                  currentLocation?.longitude ?? 0.0,
+        appBar: AppBar(
+          title: Text('Localização'),
+          // actions: <Widget>[
+          //   PopupMenuButton<int>(
+          //     onSelected: (item) => actions.handleClick(item, context, ref),
+          //     itemBuilder: (context) => [
+          //       PopupMenuItem<int>(value: 0, child: Text(Strings.logout)),
+          //       PopupMenuItem<int>(value: 1, child: Text(Strings.ajustes)),
+          //     ],
+          //   ),
+          // ],
+        ),
+        drawer: MainDrawer(),
+        body: Column(
+          children: [
+            Expanded(
+              child: FlutterMap(
+                mapController: mapController,
+                options: MapOptions(
+                  initialCenter: LatLng(
+                    currentLocation?.latitude ?? 0.0,
+                    currentLocation?.longitude ?? 0.0,
+                  ),
+                  initialZoom: 15.0,
                 ),
-                initialZoom: 15.0,
+                children: [
+                  TileLayer(
+                    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: ['a', 'b', 'c'],
+                  ),
+                  MarkerLayer(
+                    markers: [
+                      if (currentLocation != null)
+                        Marker(
+                          point: LatLng(
+                            currentLocation!.latitude,
+                            currentLocation!.longitude,
+                          ),
+                          child: Icon(
+                            Icons.location_pin,
+                            color: Colors.blue,
+                            size: 40.0,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
               ),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  subdomains: ['a', 'b', 'c'],
-                ),
-                MarkerLayer(
-                  markers: [
-                    if (currentLocation != null)
-                      Marker(
-                        point: LatLng(
-                          currentLocation!.latitude,
-                          currentLocation!.longitude,
-                        ),
-                        child: Icon(
-                          Icons.location_pin,
-                          color: Colors.red,
-                        ),
-                      ),
-                  ],
-                ),
-              ],
             ),
-          ),
-        ],
-      ),
-    );
+            Container(
+              constraints: BoxConstraints.expand(
+                height: Theme.of(context).textTheme.headlineMedium!.fontSize! * 1.1 + 30.0,
+              ),
+              padding: const EdgeInsets.all(6.0),
+              color: Colors.blue[600],
+              alignment: Alignment.center,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Latitude: ${currentLocation?.latitude ?? ''}',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white)),
+                    Text('Longitude: ${currentLocation?.longitude ?? ''}',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white)),
+                  ]),
+            ),
+          ],
+        ));
   }
 
   void getCurrentLocation(context) async {
