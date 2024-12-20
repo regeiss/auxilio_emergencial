@@ -1,8 +1,8 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
 
-const Color primarySeedColor = Color(0xFF6750A4);
-const Color secondarySeedColor = Color(0xFF3871BB);
+const Color primarySeedColor = Color.fromARGB(255, 69, 9, 233);
+const Color secondarySeedColor = Color.fromARGB(255, 171, 182, 197);
 const Color tertiarySeedColor = Color(0xFF6CA450);
 
 final ColorScheme schemeLight = SeedColorScheme.fromSeeds(

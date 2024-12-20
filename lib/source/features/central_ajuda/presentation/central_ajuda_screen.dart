@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,10 +14,13 @@ class CentralAjudaScreen extends HookConsumerWidget {
           title: Text(Strings.centralAjuda),
           actions: <Widget>[
             TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+              ),
               onPressed: () {
                 context.pop();
               },
-              child: Text('OK'),
+              child: Text('OK', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.blue)),
             ),
           ],
         ),

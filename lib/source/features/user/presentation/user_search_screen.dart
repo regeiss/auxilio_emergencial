@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
-import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
-import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/data/user_repository.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_search_bar.dart';
-import 'package:redacted/redacted.dart';
 
 class BuscaUserScreen extends ConsumerWidget {
   const BuscaUserScreen({super.key});

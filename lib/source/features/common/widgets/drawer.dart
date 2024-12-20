@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
-import 'package:gtk_flutter/source/core/router/app_router.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
@@ -13,12 +12,22 @@ class MainDrawer extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             curve: Curves.bounceInOut,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text(Strings.empresa),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(Strings.empresa, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white))
+            ]),
+          ),
+          ListTile(
+            title: Text(
+              Strings.login,
+            ),
+            onTap: () {
+              context.push('/signin');
+            },
           ),
           ListTile(
             title: const Text(Strings.centralAjuda),

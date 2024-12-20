@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/core/router/app_startup.dart';
-import 'package:gtk_flutter/source/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/source/core/router/presentation/not_found_page.dart';
 import 'package:gtk_flutter/source/core/router/scaffold_with_nested_navigation.dart';
 import 'package:gtk_flutter/source/features/ajustes/presentation/settings_screen.dart';
+import 'package:gtk_flutter/source/features/auth/presentation/login_screen.dart';
 import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
 import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
@@ -118,7 +118,7 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/signIn',
         name: AppRoute.signIn.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: PlaceholderScreen(),
+          child: LoginScreen(),
         ),
       ),
       GoRoute(

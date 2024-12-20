@@ -14,9 +14,12 @@ class Strings {
   static const String empresa = 'Prefeitura Municipal \n Novo Hamburgo';
   static const String centralAjuda = 'Central de ajuda';
   static const String sobreApp = 'Sobre o app';
+
   static const String dialogoConfirmaAcao = 'Ação requerida';
   static const String dialogoSair = 'Tem certeza que deseja sair?';
 
+  // Login
+  static const String login = 'Login';
   static const String logout = 'Sair';
   static const String logoutConfirma = 'Tem certeza que quer sair?';
   static const String logoutFailed = 'Logout falhou';

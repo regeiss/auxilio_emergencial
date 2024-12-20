@@ -9,15 +9,16 @@ class SobreAppScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text(Strings.ajustes),
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                if (Scaffold.of(context).isDrawerOpen) {
-                  Scaffold.of(context).closeEndDrawer();
-                }
+                _scaffoldKey.currentState?.closeEndDrawer();
+                // Scaffold.of(context).closeEndDrawer();
                 context.pop();
               },
               child: Text('OK'),

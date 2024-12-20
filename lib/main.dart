@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gtk_flutter/firebase_options.dart';
 import 'package:gtk_flutter/source/features/base/main_app.dart';
@@ -35,7 +34,6 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   registerErrorHandlers();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MainApp()));
   FlutterNativeSplash.remove();
 }
