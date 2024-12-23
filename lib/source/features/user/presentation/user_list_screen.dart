@@ -33,8 +33,8 @@ class ListaUserScreen extends ConsumerWidget {
       ),
       drawer: MainDrawer(),
       body: RefreshIndicator(
-          color: Colors.white,
-          backgroundColor: Colors.blue,
+          // color: Colors.white,
+          // backgroundColor: Colors.blue,
           strokeWidth: 4.0,
           child: FutureBuilder(
             future: userData,
@@ -146,12 +146,12 @@ class ListaUserScreen extends ConsumerWidget {
             }
           }),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
+        // backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         tooltip: Strings.novo,
         onPressed: () => context.goNamed(
           AppRoute.addresponsavel.name,
         ),
-        child: const Icon(Icons.add, color: Colors.white, size: 28),
+        child: const Icon(Icons.add), //, color: Colors.white, size: 28),
       ),
     );
   }

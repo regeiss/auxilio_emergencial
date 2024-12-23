@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:gtk_flutter/source/theme/theme_data.dart';
 import 'package:gtk_flutter/source/theme/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import '../../core/router/app_router.dart';
 
 class MainApp extends HookConsumerWidget {
@@ -26,41 +28,10 @@ class MainApp extends HookConsumerWidget {
       ],
       debugShowCheckedModeBanner: false,
       themeMode: appThemeState.isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
-      theme: ThemeData(colorScheme: schemeLight),
-      darkTheme: ThemeData(colorScheme: schemeDark),
-      // Temas de acessibilidade -- https://pub.dev/packages/flex_seed_scheme
-      highContrastTheme: ThemeData(colorScheme: schemeLightHc),
-      highContrastDarkTheme: ThemeData(colorScheme: schemeDarkHc),
+      theme: AppTheme.lightblueWhale,
+      darkTheme: AppTheme.darkblueWhale,
+      highContrastTheme: FlexThemeData.dark(),
+      highContrastDarkTheme: FlexThemeData.light(),
     );
   }
-
-  // configs - grava ou recupera
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-      case AppLifecycleState.inactive:
-        // Do something when the app is visible...
-        break;
-      case AppLifecycleState.hidden: // <-- This is the new state.
-      case AppLifecycleState.paused:
-      case AppLifecycleState.detached:
-        // Do something when the app is not visible...
-        break;
-    }
-  }
-
-  // As alterações são efetuadas pelo sistema. O app adapta o tema do sistema.
-  // ThemeData tema(AppThemeState appThemeState) {
-  //   if (appThemeState.isDarkModeEnabled && appThemeState.isHighContrastEnabled) {
-  //     return ThemeData(colorScheme: schemeDarkOnBW);
-  //   } else if (appThemeState.isDarkModeEnabled && !appThemeState.isHighContrastEnabled) {
-  //     return ThemeData(colorScheme: schemeDark);
-  //   } else if (!appThemeState.isDarkModeEnabled && appThemeState.isHighContrastEnabled) {
-  //     return ThemeData(colorScheme: schemeLightOnBW);
-  //   } else if (appThemeState.isDarkModeEnabled && !appThemeState.isHighContrastEnabled) {
-  //     return ThemeData(colorScheme: schemeDark);
-  //   }
-
-  //   return ThemeData(colorScheme: schemeLight);
-  // }
 }

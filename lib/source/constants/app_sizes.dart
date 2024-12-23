@@ -34,3 +34,19 @@ const gapH24 = SizedBox(height: Sizes.p24);
 const gapH32 = SizedBox(height: Sizes.p32);
 const gapH48 = SizedBox(height: Sizes.p48);
 const gapH64 = SizedBox(height: Sizes.p64);
+
+class AppInsets {
+  AppInsets._();
+  static const double xs = 2;
+  static const double s = 4;
+  static const double m = 8;
+  static const double l = 16;
+  static const double xl = 32;
+  static const double xxl = 64;
+
+  static const double edge = 12;
+
+  static const double maxBodyWidth = 1000;
+  static const double phoneWidthBreakpoint = 600;
+  static const double phoneHeightBreakpoint = 700;
+}
