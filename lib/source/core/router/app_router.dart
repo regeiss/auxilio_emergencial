@@ -26,8 +26,8 @@ final _listaNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'lista');
 // final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
 final _responsavelNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'responsavel');
 // teste
-final _searchNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'search');
-final _favoritesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'favorites');
+// final _searchNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'search');
+// final _favoritesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'favorites');
 
 enum AppRoute {
   onboarding,

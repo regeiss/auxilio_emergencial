@@ -7,7 +7,7 @@ import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/features/common/widgets/link_text_span.dart';
-import 'package:gtk_flutter/source/theme/theme_provider.dart';
+import 'package:gtk_flutter/source/theme/presentation/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 
@@ -43,7 +43,7 @@ class AjustesScreen extends HookConsumerWidget {
                   icons: Icons.edit_square,
                   iconStyle: IconStyle(),
                   title: 'Aparência',
-                  subtitle: "Make Ziar'App yours",
+                  subtitle: "Personalize o app",
                 ),
                 SettingsItem(
                   onTap: () {},
