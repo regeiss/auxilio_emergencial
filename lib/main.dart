@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gtk_flutter/firebase_options.dart';
 import 'package:gtk_flutter/source/features/base/main_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

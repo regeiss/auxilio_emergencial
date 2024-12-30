@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,29 +27,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                     width: 200,
                     height: 100,
-                    /*decoration: BoxDecoration( 
-                        color: Colors.red, 
-                        borderRadius: BorderRadius.circular(50.0)),*/
+                    decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(50.0)),
                     child: Image.asset('assets/user.png')),
               ),
             ),
+            gapH32,
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Phone number, email or username',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    labelText: 'Email ou usuário',
+                    hintText: 'Entre email válido ou usuário'),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Password', hintText: 'Enter secure password'),
+                decoration:
+                    InputDecoration(border: OutlineInputBorder(), labelText: 'Senha', hintText: 'Informe sua senha'),
               ),
             ),
             SizedBox(
@@ -78,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 62),
-                    child: Text('Forgot your login details? '),
+                    child: Text('Esqueceu suas informações de login?? '),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 1.0),
@@ -87,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           print('hello');
                         },
                         child: Text(
-                          'Get help logging in.',
+                          'Obtenha ajuda para logar.',
                           style: TextStyle(fontSize: 14, color: Colors.blue),
                         )),
                   )

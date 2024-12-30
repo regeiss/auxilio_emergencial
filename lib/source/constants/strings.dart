@@ -11,9 +11,13 @@ class Strings {
   static const String repetir = 'Repetir';
 
   // Drawer
-  static const String empresa = 'Prefeitura Municipal \n Novo Hamburgo';
+  static const String empresa = 'Prefeitura Municipal';
+  static const String municipio = 'Novo Hamburgo';
   static const String centralAjuda = 'Central de ajuda';
   static const String sobreApp = 'Sobre o app';
+  static const String mensagens = 'Central de mensagens';
+  static const String politicaPrivacidade = 'Politíca de privacidade';
+  static const String termoResponsabilidade = 'Termo de responsabilidade';
 
   static const String dialogoConfirmaAcao = 'Ação requerida';
   static const String dialogoSair = 'Tem certeza que deseja sair?';
