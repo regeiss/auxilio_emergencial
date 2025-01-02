@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
+import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,29 +17,17 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Auxílio Emergencial"),
+        title: Text("Auxílio Emergencial - Login"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 110.0),
-              child: Center(
-                child: Container(
-                    width: 200,
-                    height: 100,
-                    decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(50.0)),
-                    child: Image.asset('assets/user.png')),
-              ),
-            ),
             gapH32,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email ou usuário',
-                    hintText: 'Entre email válido ou usuário'),
+                    border: OutlineInputBorder(), labelText: Strings.labelUsuario, hintText: Strings.hintUsuario),
               ),
             ),
             Padding(
@@ -46,19 +35,19 @@ class _LoginScreenState extends State<LoginScreen> {
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration:
-                    InputDecoration(border: OutlineInputBorder(), labelText: 'Senha', hintText: 'Informe sua senha'),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), labelText: Strings.labelSenha, hintText: Strings.hintSenha),
               ),
             ),
             SizedBox(
               height: 65,
-              width: 360,
+              width: 460,
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: ElevatedButton(
                     child: Text(
-                      'Log in ',
+                      Strings.login,
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     onPressed: () {
@@ -77,16 +66,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 62),
-                    child: Text('Esqueceu suas informações de login?? '),
+                    child: Text(Strings.esqueceuInfo),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 1.0),
                     child: InkWell(
                         onTap: () {
-                          print('hello');
+                          print('abrir ajuda');
                         },
                         child: Text(
-                          'Obtenha ajuda para logar.',
+                          Strings.ajudaLogar,
                           style: TextStyle(fontSize: 14, color: Colors.blue),
                         )),
                   )

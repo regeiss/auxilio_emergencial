@@ -13,11 +13,11 @@ Future<void> showExceptionAlertDialog({
     );
 
 String _message(dynamic exception) {
-  if (exception is FirebaseException) {
-    return exception.message ?? exception.toString();
+  if (exception is Exception) {
+    return exception.toString();
   }
-  if (exception is PlatformException) {
-    return exception.message ?? exception.toString();
+  if (exception is Exception) {
+    return exception.toString();
   }
   return exception.toString();
 }

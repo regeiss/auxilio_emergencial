@@ -7,7 +7,7 @@ part of 'theme_persistence_controller.dart';
 // **************************************************************************
 
 String _$themePersistenceControllerHash() =>
-    r'fbc728fe1c998d86b501fdc9a89db1b4bce900f7';
+    r'b15176478b5cef82062bd86c25eb2587f374e74f';
 
 /// See also [ThemePersistenceController].
 @ProviderFor(ThemePersistenceController)

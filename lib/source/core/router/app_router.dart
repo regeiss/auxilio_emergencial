@@ -11,6 +11,7 @@ import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
+import 'package:gtk_flutter/source/features/termo_responsabilidade/termo_screen.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
@@ -33,7 +34,6 @@ enum AppRoute {
   onboarding,
   startup,
   signIn,
-  ajuda,
   home,
   cadastro,
   abrigos,
@@ -48,6 +48,11 @@ enum AppRoute {
   movies,
   movie,
   favorites,
+  // fim dos testes
+  termoresp,
+  politicapriv,
+  mensagens,
+  centralajuda
 }
 
 @riverpod
@@ -121,9 +126,30 @@ GoRouter goRouter(GoRouterRef ref) {
       ),
       GoRoute(
         path: '/ajuda',
-        name: AppRoute.ajuda.name,
+        name: AppRoute.centralajuda.name,
         pageBuilder: (context, state) => const NoTransitionPage(
           child: CentralAjudaScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/termo',
+        name: AppRoute.termoresp.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: TermoResponsbilidadeScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/mensagens',
+        name: AppRoute.mensagens.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: PlaceholderScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/politica',
+        name: AppRoute.politicapriv.name,
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: PlaceholderScreen(),
         ),
       ),
       GoRoute(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,16 +18,22 @@ class CentralAjudaScreen extends HookConsumerWidget {
                 foregroundColor: Colors.blue,
               ),
               onPressed: () {
-                context.pop();
+                context.goNamed(AppRoute.home.name);
               },
               child: Text('OK', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.blue)),
             ),
           ],
         ),
-        drawer: MainDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text('Central de ajuda'),
-        ));
+        //drawer: MainDrawer(),
+        body: Center(
+            child: Text(
+          "Aguardando desenvolvimento",
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.blue[800],
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.normal,
+          ),
+        )));
   }
 }

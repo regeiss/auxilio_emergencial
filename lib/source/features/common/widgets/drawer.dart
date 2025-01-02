@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
 import 'package:gtk_flutter/source/constants/config.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/link_text_span.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -35,31 +36,31 @@ class MainDrawer extends StatelessWidget {
               Strings.login,
             ),
             onTap: () {
-              context.push('/signin');
+              context.goNamed(AppRoute.signIn.name);
             },
           ),
           ListTile(
             title: const Text(Strings.centralAjuda),
             onTap: () {
-              context.push('/ajuda');
+              context.goNamed(AppRoute.centralajuda.name);
             },
           ),
           ListTile(
             title: const Text(Strings.mensagens),
             onTap: () {
-              // context.push('/ajuda');
+              context.goNamed(AppRoute.mensagens.name);
             },
           ),
           ListTile(
             title: const Text(Strings.politicaPrivacidade),
             onTap: () {
-              //context.push('/ajuda');
+              context.goNamed(AppRoute.politicapriv.name);
             },
           ),
           ListTile(
             title: const Text(Strings.termoResponsabilidade),
             onTap: () {
-              //context.push('/ajuda');
+              context.goNamed(AppRoute.termoresp.name);
             },
           ),
           ListTile(

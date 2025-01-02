@@ -32,15 +32,21 @@ class Strings {
   static const String signInWithEmailPassword = 'Entrar com email & senha';
   static const String goAnonymous = 'Entre anonimante';
   static const String or = 'ou';
-  static const String signInFailed = 'Sign in falhou';
 
+  static const String signInFailed = 'Sign in falhou';
+  static const String esqueceuInfo = 'Esqueceu suas informações de login? ';
+  static const String ajudaLogar = 'Obtenha ajuda para logar.';
+  static const String labelUsuario = 'Email ou usuário';
+  static const String hintUsuario = 'Entre email válido ou usuário';
+  static const String labelSenha = 'Senha';
+  static const String hintSenha = 'Informe sua senha';
   // Erros
   static const String dadosIndisponiveis = 'Não foi possível obter os dados';
 
   // Alertas
   static const String confirmaExclusaoTitulo = 'Confirme a exclusão';
-  static const String confirmaExclusaoTexto = 'Confirme cancelar';
-  static const String confirmaCancelarTitulo = 'Você quer mesmo excluir este item?';
+  static const String confirmaExclusaoTexto = 'Confirme a exclusão do item';
+  static const String confirmaCancelarTitulo = 'Você quer mesmo cancelar?';
   static const String confirmaCancelarTexto = 'Há alterações no item, cancelar mesmo assim?';
 
   //
@@ -55,4 +61,7 @@ class Strings {
   static const String accountPage = 'Página Conta';
   // Ajustes page
   static const String ajustes = 'Ajustes';
+
+  // Termo responsabilidade
+  static const String textoTermoResponsabilidade = 'Declaro para os devidos fins que ...';
 }
