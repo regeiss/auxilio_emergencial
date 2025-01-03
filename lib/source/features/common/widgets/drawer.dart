@@ -26,7 +26,7 @@ class MainDrawer extends StatelessWidget {
               Text(Strings.municipio, style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white)),
               Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: Text('Fulanosky da Silva',
+                  child: Text('Ciclano Fulanosky da Silva',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white))),
               Text('999.999.999-00', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white)),
             ]),
@@ -83,7 +83,7 @@ class MainDrawer extends StatelessWidget {
     showAboutDialog(
       context: context,
       applicationName: 'Flutter',
-      applicationIcon: FlutterLogo(),
+      applicationIcon: ImageIcon(AssetImage("assets/icons/icon.png")),
       applicationVersion: '1.0.0',
       children: <Widget>[
         Padding(
@@ -93,16 +93,12 @@ class MainDrawer extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(
                   style: aboutTextStyle,
-                  text: 'This app demos FlexColorScheme theming, '
-                      'together with Riverpod and three different '
-                      'settings persistence implementations, volatile memory, '
-                      'SharedPreferences and Hive.\n\n'
-                      'Check out FlexColorScheme package on ',
+                  text: Strings.textoSobreApp,
                 ),
                 LinkTextSpan(
                   style: linkStyle,
-                  uri: AppConst.packageUri,
-                  text: 'pub.dev',
+                  uri: Strings.packageUri,
+                  text: Strings.linkSobreApp,
                 ),
                 TextSpan(
                   style: aboutTextStyle,
@@ -110,8 +106,7 @@ class MainDrawer extends StatelessWidget {
                 ),
                 TextSpan(
                   style: footerStyle,
-                  text: 'Built with Flutter ${AppConst.flutterVersion}, using '
-                      'FlexColorScheme package ${AppConst.packageVersion}\n\n',
+                  text: Strings.textoBuildInfo,
                 ),
               ],
             ),

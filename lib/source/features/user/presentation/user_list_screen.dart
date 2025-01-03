@@ -8,7 +8,6 @@ import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/data/user_repository.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_search_bar.dart';
-import 'package:redacted/redacted.dart';
 
 class ListaUserScreen extends ConsumerWidget {
   const ListaUserScreen({super.key});
@@ -106,12 +105,6 @@ class ListaUserScreen extends ConsumerWidget {
                       ),
                     );
                   },
-                ).redacted(
-                  context: context,
-                  redact: true,
-                  configuration: RedactedConfiguration(
-                    animationDuration: const Duration(milliseconds: 800), //default
-                  ),
                 );
               } else if (snapshot.hasError) {
                 return Center(
