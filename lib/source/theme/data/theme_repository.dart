@@ -8,7 +8,7 @@ class TemaEscuroRepository {
 
   static const temaEscuroAtivoKey = 'temaEscuroAtivo';
 
-  Future<void> setTemaEscuroComplete() async {
+  Future<void> setTemaEscuroAtivo() async {
     await sharedPreferences.setBool(temaEscuroAtivoKey, true);
   }
 

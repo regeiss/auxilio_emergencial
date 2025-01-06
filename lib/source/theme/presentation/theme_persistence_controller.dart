@@ -14,6 +14,6 @@ class ThemePersistenceController extends _$ThemePersistenceController {
   Future<void> completeThemePersistence() async {
     final temaEscuroRepository = ref.watch(temaEscuroRepositoryProvider).requireValue;
     state = const AsyncLoading();
-    state = await AsyncValue.guard(temaEscuroRepository.setTemaEscuroComplete);
+    state = await AsyncValue.guard(temaEscuroRepository.setTemaEscuroAtivo);
   }
 }

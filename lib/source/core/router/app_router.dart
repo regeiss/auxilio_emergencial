@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/core/router/app_startup.dart';
+import 'package:gtk_flutter/source/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/source/core/router/presentation/not_found_page.dart';
 import 'package:gtk_flutter/source/core/router/scaffold_with_nested_navigation.dart';
 import 'package:gtk_flutter/source/features/ajustes/presentation/settings_screen.dart';
+import 'package:gtk_flutter/source/features/auth/presentation/auth_controller.dart';
 import 'package:gtk_flutter/source/features/auth/presentation/login_screen.dart';
 import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
@@ -16,6 +18,8 @@ import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
+import 'package:gtk_flutter/source/theme/data/theme_repository.dart';
+import 'package:gtk_flutter/source/theme/presentation/theme_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_router.g.dart';
 
@@ -26,6 +30,7 @@ final _abrigoNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'abrigo');
 final _listaNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'lista');
 // final _perfilNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'perfil');
 final _responsavelNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'responsavel');
+
 // teste
 // final _searchNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'search');
 // final _favoritesNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'favorites');
@@ -59,6 +64,7 @@ enum AppRoute {
 GoRouter goRouter(GoRouterRef ref) {
   // rebuild GoRouter when app startup state changes
   final appStartupState = ref.watch(appStartupProvider);
+  final authState = ref.watch(authProvider);
 
   return GoRouter(
     initialLocation: '/signIn',
@@ -75,6 +81,7 @@ GoRouter goRouter(GoRouterRef ref) {
 
       final onboardingRepository = ref.read(onboardingRepositoryProvider).requireValue;
       final didCompleteOnboarding = onboardingRepository.isOnboardingComplete();
+
       final path = state.uri.path;
 
       if (!didCompleteOnboarding) {
@@ -84,9 +91,9 @@ GoRouter goRouter(GoRouterRef ref) {
         return null;
       }
 
-      final isLoggedIn = true; //authRepository.currentUser != null;
+      //final isLoggedIn = authRepository.currentUser != null;
 
-      if (isLoggedIn) {
+      if (authState.isLoggedIn) {
         if (path.startsWith('/startup') || path.startsWith('/onboarding') || path.startsWith('/signIn')) {
           return '/home';
         }
@@ -100,7 +107,7 @@ GoRouter goRouter(GoRouterRef ref) {
       }
       return null;
     },
-    // refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
+    refreshListenable: authState,
     routes: [
       GoRoute(
         path: '/startup',
