@@ -20,6 +20,8 @@ final moviesRepositoryProvider = AutoDisposeProvider<MoviesRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef MoviesRepositoryRef = AutoDisposeProviderRef<MoviesRepository>;
 String _$movieHash() => r'a84110beb4fdebcf3fa74dfcb6879ea287bc915c';
 
@@ -53,25 +55,11 @@ const movieProvider = MovieFamily();
 /// Provider to fetch a movie by ID
 ///
 /// Copied from [movie].
-class MovieFamily extends Family {
+class MovieFamily extends Family<AsyncValue<TMDBMovie>> {
   /// Provider to fetch a movie by ID
   ///
   /// Copied from [movie].
   const MovieFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'movieProvider';
 
   /// Provider to fetch a movie by ID
   ///
@@ -84,7 +72,6 @@ class MovieFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   MovieProvider getProviderOverride(
     covariant MovieProvider provider,
@@ -94,26 +81,19 @@ class MovieFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<TMDBMovie> Function(MovieRef ref) create) {
-    return _$MovieFamilyOverride(this, create);
-  }
-}
-
-class _$MovieFamilyOverride implements FamilyOverride {
-  _$MovieFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<TMDBMovie> Function(MovieRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final MovieFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  MovieProvider getProviderOverride(
-    covariant MovieProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'movieProvider';
 }
 
 /// Provider to fetch a movie by ID
@@ -142,7 +122,7 @@ class MovieProvider extends AutoDisposeFutureProvider<TMDBMovie> {
         );
 
   MovieProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -155,7 +135,7 @@ class MovieProvider extends AutoDisposeFutureProvider<TMDBMovie> {
 
   @override
   Override overrideWith(
-    FutureOr<TMDBMovie> Function(MovieRef ref) create,
+    FutureOr<TMDBMovie> Function(MovieRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -172,29 +152,8 @@ class MovieProvider extends AutoDisposeFutureProvider<TMDBMovie> {
   }
 
   @override
-  ({
-    int movieId,
-  }) get argument {
-    return (movieId: movieId,);
-  }
-
-  @override
   AutoDisposeFutureProviderElement<TMDBMovie> createElement() {
     return _MovieProviderElement(this);
-  }
-
-  MovieProvider _copyWith(
-    FutureOr<TMDBMovie> Function(MovieRef ref) create,
-  ) {
-    return MovieProvider._internal(
-      (ref) => create(ref as MovieRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      movieId: movieId,
-    );
   }
 
   @override
@@ -211,6 +170,8 @@ class MovieProvider extends AutoDisposeFutureProvider<TMDBMovie> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MovieRef on AutoDisposeFutureProviderRef<TMDBMovie> {
   /// The parameter `movieId` of this provider.
   int get movieId;
@@ -235,38 +196,23 @@ const fetchMoviesProvider = FetchMoviesFamily();
 /// Provider to fetch paginated movies data
 ///
 /// Copied from [fetchMovies].
-class FetchMoviesFamily extends Family {
+class FetchMoviesFamily extends Family<AsyncValue<TMDBMoviesResponse>> {
   /// Provider to fetch paginated movies data
   ///
   /// Copied from [fetchMovies].
   const FetchMoviesFamily();
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'fetchMoviesProvider';
-
   /// Provider to fetch paginated movies data
   ///
   /// Copied from [fetchMovies].
   FetchMoviesProvider call({
-    required MoviesQueryData queryData,
+    required ({int page, String query}) queryData,
   }) {
     return FetchMoviesProvider(
       queryData: queryData,
     );
   }
 
-  @visibleForOverriding
   @override
   FetchMoviesProvider getProviderOverride(
     covariant FetchMoviesProvider provider,
@@ -276,27 +222,19 @@ class FetchMoviesFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(
-      FutureOr<TMDBMoviesResponse> Function(FetchMoviesRef ref) create) {
-    return _$FetchMoviesFamilyOverride(this, create);
-  }
-}
-
-class _$FetchMoviesFamilyOverride implements FamilyOverride {
-  _$FetchMoviesFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<TMDBMoviesResponse> Function(FetchMoviesRef ref) create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final FetchMoviesFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  FetchMoviesProvider getProviderOverride(
-    covariant FetchMoviesProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchMoviesProvider';
 }
 
 /// Provider to fetch paginated movies data
@@ -308,7 +246,7 @@ class FetchMoviesProvider
   ///
   /// Copied from [fetchMovies].
   FetchMoviesProvider({
-    required MoviesQueryData queryData,
+    required ({int page, String query}) queryData,
   }) : this._internal(
           (ref) => fetchMovies(
             ref as FetchMoviesRef,
@@ -327,7 +265,7 @@ class FetchMoviesProvider
         );
 
   FetchMoviesProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -336,11 +274,11 @@ class FetchMoviesProvider
     required this.queryData,
   }) : super.internal();
 
-  final MoviesQueryData queryData;
+  final ({int page, String query}) queryData;
 
   @override
   Override overrideWith(
-    FutureOr<TMDBMoviesResponse> Function(FetchMoviesRef ref) create,
+    FutureOr<TMDBMoviesResponse> Function(FetchMoviesRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -357,29 +295,8 @@ class FetchMoviesProvider
   }
 
   @override
-  ({
-    MoviesQueryData queryData,
-  }) get argument {
-    return (queryData: queryData,);
-  }
-
-  @override
   AutoDisposeFutureProviderElement<TMDBMoviesResponse> createElement() {
     return _FetchMoviesProviderElement(this);
-  }
-
-  FetchMoviesProvider _copyWith(
-    FutureOr<TMDBMoviesResponse> Function(FetchMoviesRef ref) create,
-  ) {
-    return FetchMoviesProvider._internal(
-      (ref) => create(ref as FetchMoviesRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      queryData: queryData,
-    );
   }
 
   @override
@@ -396,9 +313,11 @@ class FetchMoviesProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FetchMoviesRef on AutoDisposeFutureProviderRef<TMDBMoviesResponse> {
   /// The parameter `queryData` of this provider.
-  MoviesQueryData get queryData;
+  ({int page, String query}) get queryData;
 }
 
 class _FetchMoviesProviderElement
@@ -407,7 +326,8 @@ class _FetchMoviesProviderElement
   _FetchMoviesProviderElement(super.provider);
 
   @override
-  MoviesQueryData get queryData => (origin as FetchMoviesProvider).queryData;
+  ({int page, String query}) get queryData =>
+      (origin as FetchMoviesProvider).queryData;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

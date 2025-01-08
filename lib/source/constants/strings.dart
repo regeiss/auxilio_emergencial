@@ -18,6 +18,7 @@ class Strings {
   static const String mensagens = 'Central de mensagens';
   static const String politicaPrivacidade = 'Politíca de privacidade';
   static const String termoResponsabilidade = 'Termo de responsabilidade';
+  static const String centralMensagens = 'Central de mensagens';
 
   static const String dialogoConfirmaAcao = 'Ação requerida';
   static const String dialogoSair = 'Tem certeza que deseja sair?';
@@ -64,33 +65,21 @@ class Strings {
 
   // Termo responsabilidade
   static const String textoTermoResponsabilidade = 'Declaro para os devidos fins que ...';
-
+  static const String textoPoliticaPrivacidade = 'Declaro para os devidos fins que ...';
+  static const String textoCentralMensagens = 'Declaro para os devidos fins que ...';
   // Sobre o app
   static const String textoSobreApp = 'Este aplicativo foi  ...';
   static const String linkSobreApp = 'PMNH';
-  static const String textoBuildInfo = 'Este aplicativo foi  ...';
+  static const String textoBuildInfo = '654655';
 
-  static const String appName = 'ThemeDemo';
-
-  /// Current app version.
+  static const String appName = 'Auxilio Emergencial';
   static const String version = '0.9.9';
-
-  /// Used version of FlexColorScheme package.
   static const String packageVersion = '7.2.0';
-
-  /// Build with Flutter version.
   static const String flutterVersion = 'Channel stable v3.10.6';
-
-  /// Copyright years notice.
-  static const String copyright = '© 2021-2023';
-
-  /// Author info.
-  static const String author = 'Mike Rydstrom';
-
-  /// License info.
+  static const String copyright = '© 2024-2025';
+  static const String author = 'PMNH DSI';
   static const String license = 'BSD 3-Clause License';
 
-  /// Link to the FlexColorScheme package.
   static final Uri packageUri = Uri(
     scheme: 'https',
     host: 'pub.dev',

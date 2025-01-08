@@ -20,7 +20,7 @@ class CentralAjudaScreen extends HookConsumerWidget {
               onPressed: () {
                 context.goNamed(AppRoute.home.name);
               },
-              child: Text('OK', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.blue)),
+              child: Text('OK'), // style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.blue)),
             ),
           ],
         ),

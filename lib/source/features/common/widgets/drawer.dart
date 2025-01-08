@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/constants/app_sizes.dart';
-import 'package:gtk_flutter/source/constants/config.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/link_text_span.dart';
@@ -30,14 +29,6 @@ class MainDrawer extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white))),
               Text('999.999.999-00', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white)),
             ]),
-          ),
-          ListTile(
-            title: Text(
-              Strings.login,
-            ),
-            onTap: () {
-              context.goNamed(AppRoute.signIn.name);
-            },
           ),
           ListTile(
             title: const Text(Strings.centralAjuda),
@@ -82,9 +73,9 @@ class MainDrawer extends StatelessWidget {
 
     showAboutDialog(
       context: context,
-      applicationName: 'Flutter',
+      applicationName: Strings.appName,
       applicationIcon: ImageIcon(AssetImage("assets/icons/icon.png")),
-      applicationVersion: '1.0.0',
+      applicationVersion: Strings.version,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: AppInsets.l),
@@ -102,7 +93,7 @@ class MainDrawer extends StatelessWidget {
                 ),
                 TextSpan(
                   style: aboutTextStyle,
-                  text: '.\n\n',
+                  text: '.\n',
                 ),
                 TextSpan(
                   style: footerStyle,

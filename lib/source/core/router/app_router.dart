@@ -4,22 +4,22 @@ import 'package:gtk_flutter/source/core/router/app_startup.dart';
 import 'package:gtk_flutter/source/core/router/go_router_refresh_stream.dart';
 import 'package:gtk_flutter/source/core/router/presentation/not_found_page.dart';
 import 'package:gtk_flutter/source/core/router/scaffold_with_nested_navigation.dart';
-import 'package:gtk_flutter/source/features/ajustes/presentation/settings_screen.dart';
-import 'package:gtk_flutter/source/features/auth/presentation/auth_controller.dart';
-import 'package:gtk_flutter/source/features/auth/presentation/login_screen.dart';
+import 'package:gtk_flutter/source/features/ajustes/presentation/ajustes_screen.dart';
+import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
+import 'package:gtk_flutter/source/features/auth/presentation/custom_sign_in_screen.dart';
 import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
+import 'package:gtk_flutter/source/features/central_mensagens/screen/central_mensagens.screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
 import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:gtk_flutter/source/features/placeholder/presentation/placeholder_screen.dart';
-import 'package:gtk_flutter/source/features/termo_responsabilidade/termo_screen.dart';
+import 'package:gtk_flutter/source/features/politica_privacidade/screen/politica_priv_screen.dart';
+import 'package:gtk_flutter/source/features/termo_responsabilidade/termo_resp_screen.dart';
 import 'package:gtk_flutter/source/features/user/domain/user.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_add_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_detail_screen.dart';
 import 'package:gtk_flutter/source/features/user/presentation/user_list_screen.dart';
-import 'package:gtk_flutter/source/theme/data/theme_repository.dart';
-import 'package:gtk_flutter/source/theme/presentation/theme_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_router.g.dart';
 
@@ -64,7 +64,7 @@ enum AppRoute {
 GoRouter goRouter(GoRouterRef ref) {
   // rebuild GoRouter when app startup state changes
   final appStartupState = ref.watch(appStartupProvider);
-  final authState = ref.watch(authProvider);
+  final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
     initialLocation: '/signIn',
@@ -81,7 +81,6 @@ GoRouter goRouter(GoRouterRef ref) {
 
       final onboardingRepository = ref.read(onboardingRepositoryProvider).requireValue;
       final didCompleteOnboarding = onboardingRepository.isOnboardingComplete();
-
       final path = state.uri.path;
 
       if (!didCompleteOnboarding) {
@@ -91,9 +90,9 @@ GoRouter goRouter(GoRouterRef ref) {
         return null;
       }
 
-      //final isLoggedIn = authRepository.currentUser != null;
+      final isLoggedIn = authRepository.currentUser != null;
 
-      if (authState.isLoggedIn) {
+      if (isLoggedIn) {
         if (path.startsWith('/startup') || path.startsWith('/onboarding') || path.startsWith('/signIn')) {
           return '/home';
         }
@@ -107,7 +106,7 @@ GoRouter goRouter(GoRouterRef ref) {
       }
       return null;
     },
-    refreshListenable: authState,
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: '/startup',
@@ -128,7 +127,7 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/signIn',
         name: AppRoute.signIn.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: LoginScreen(),
+          child: CustomSignInScreen(),
         ),
       ),
       GoRoute(
@@ -149,14 +148,14 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/mensagens',
         name: AppRoute.mensagens.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: PlaceholderScreen(),
+          child: CentralMensagensScreen(),
         ),
       ),
       GoRoute(
         path: '/politica',
         name: AppRoute.politicapriv.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: PlaceholderScreen(),
+          child: PoliticaPrivacidadeScreen(),
         ),
       ),
       GoRoute(
