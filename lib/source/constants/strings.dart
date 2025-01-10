@@ -15,10 +15,10 @@ class Strings {
   static const String municipio = 'Novo Hamburgo';
   static const String centralAjuda = 'Central de ajuda';
   static const String sobreApp = 'Sobre o app';
-  static const String mensagens = 'Central de mensagens';
+  static const String mensagens = 'Central de notificações';
   static const String politicaPrivacidade = 'Politíca de privacidade';
   static const String termoResponsabilidade = 'Termo de responsabilidade';
-  static const String centralMensagens = 'Central de mensagens';
+  static const String centralMensagens = 'Central de notificações';
 
   static const String dialogoConfirmaAcao = 'Ação requerida';
   static const String dialogoSair = 'Tem certeza que deseja sair?';
@@ -43,13 +43,11 @@ class Strings {
   static const String hintSenha = 'Informe sua senha';
   // Erros
   static const String dadosIndisponiveis = 'Não foi possível obter os dados';
-
   // Alertas
   static const String confirmaExclusaoTitulo = 'Confirme a exclusão';
   static const String confirmaExclusaoTexto = 'Confirme a exclusão do item';
   static const String confirmaCancelarTitulo = 'Você quer mesmo cancelar?';
   static const String confirmaCancelarTexto = 'Há alterações no item, cancelar mesmo assim?';
-
   //
   static const String homePage = 'Auxílio Emergencial';
   static const String placeholderPage = 'Tela placeholder';
@@ -66,9 +64,9 @@ class Strings {
   // Termo responsabilidade
   static const String textoTermoResponsabilidade = 'Declaro para os devidos fins que ...';
   static const String textoPoliticaPrivacidade = 'Declaro para os devidos fins que ...';
-  static const String textoCentralMensagens = 'Declaro para os devidos fins que ...';
+  static const String textoCentralMensagens = 'Notificações e mensagens';
   // Sobre o app
-  static const String textoSobreApp = 'Este aplicativo foi  ...';
+  static const String textoSobreApp = 'Desenvolvido por DSI ';
   static const String linkSobreApp = 'PMNH';
   static const String textoBuildInfo = '654655';
 

@@ -39,7 +39,7 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             title: const Text(Strings.mensagens),
             onTap: () {
-              context.goNamed(AppRoute.mensagens.name);
+              context.goNamed(AppRoute.notificacao.name);
             },
           ),
           ListTile(

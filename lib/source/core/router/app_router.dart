@@ -8,7 +8,7 @@ import 'package:gtk_flutter/source/features/ajustes/presentation/ajustes_screen.
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
 import 'package:gtk_flutter/source/features/auth/presentation/custom_sign_in_screen.dart';
 import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
-import 'package:gtk_flutter/source/features/central_mensagens/screen/central_mensagens.screen.dart';
+import 'package:gtk_flutter/source/features/notificacoes/presentation/screen/notificacoes_screen.dart';
 import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
 import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
@@ -56,7 +56,7 @@ enum AppRoute {
   // fim dos testes
   termoresp,
   politicapriv,
-  mensagens,
+  notificacao,
   centralajuda
 }
 
@@ -145,10 +145,10 @@ GoRouter goRouter(GoRouterRef ref) {
         ),
       ),
       GoRoute(
-        path: '/mensagens',
-        name: AppRoute.mensagens.name,
+        path: '/notificacoes',
+        name: AppRoute.notificacao.name,
         pageBuilder: (context, state) => const NoTransitionPage(
-          child: CentralMensagensScreen(),
+          child: NotificacoesScreen(),
         ),
       ),
       GoRoute(

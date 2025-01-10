@@ -12,33 +12,10 @@ class MainApp extends HookConsumerWidget {
   const MainApp({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    _state = SchedulerBinding.instance.lifecycleState;
-    _listener = AppLifecycleListener(
-      onShow: () => _handleTransition('show'),
-      onResume: () => _handleTransition('resume'),
-      onHide: () => _handleTransition('hide'),
-      onInactive: () => _handleTransition('inactive'),
-      onPause: () => _handleTransition('pause'),
-      onDetach: () => _handleTransition('detach'),
-      onRestart: () => _handleTransition('restart'),
-      // This fires for each state change. Callbacks above fire only for
-      // specific state transitions.
-      onStateChange: _handleStateChange,
-    );
-    if (_state != null) {
-      _states.add(_state!.name);
-    }
-  }
-
-  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
     final appThemeState = ref.watch(appThemeStateNotifier);
     late final AppLifecycleListener _listener;
-    final List<String> _states = <String>[];
-    late AppLifecycleState? _state;
 
     return MaterialApp.router(
       routerConfig: goRouter,

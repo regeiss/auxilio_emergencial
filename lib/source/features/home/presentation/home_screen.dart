@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
@@ -15,6 +17,15 @@ class HomeScreen extends ConsumerWidget {
         appBar: AppBar(
           title: const Text(Strings.homePage),
           actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                context.goNamed(AppRoute.notificacao.name);
+              },
+              icon: Badge.count(
+                count: 3,
+                child: Icon(Icons.notifications),
+              ),
+            ),
             PopupMenuButton<int>(
               onSelected: (item) => actions.handleClick(item, context, ref),
               itemBuilder: (context) => [
