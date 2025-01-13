@@ -8,6 +8,7 @@ import 'package:gtk_flutter/source/features/notificacoes/presentation/controller
 import 'package:gtk_flutter/source/utils/async_value_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
+import 'package:intl/intl.dart';
 
 class NotificacoesScreen extends StatelessWidget {
   const NotificacoesScreen({super.key});
@@ -34,9 +35,9 @@ class NotificacoesScreen extends StatelessWidget {
             notificacoesScreenControllerProvider,
             (_, state) => state.showAlertDialogOnError(context),
           );
-          final jobsQuery = ref.watch(notificacoesQueryProvider);
+          final notificacoesQuery = ref.watch(notificacoesQueryProvider);
           return FirestoreListView<Notificacao>(
-            query: jobsQuery,
+            query: notificacoesQuery,
             emptyBuilder: (context) => const Center(child: Text('No data')),
             errorBuilder: (context, error, stackTrace) => Center(
               child: Text(error.toString()),
@@ -71,8 +72,18 @@ class NotificacaoListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dateFormat = DateFormat('dd/MM/yyyy hh:mm a');
+
     return ListTile(
-      title: Text(notificacao.titulo),
+      leading: Icon(Icons.warning), // Text(notificacao.data.toString()),
+      title: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(notificacao.titulo),
+          Text(' - '),
+          Text(dateFormat.format(notificacao.data)),
+        ],
+      ),
       subtitle: Text(notificacao.texto),
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,

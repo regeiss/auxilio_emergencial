@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
-import 'package:logger/logger.dart';
 
 typedef NotificacaoID = String;
 
@@ -23,7 +22,7 @@ class Notificacao extends Equatable {
   factory Notificacao.fromMap(Map<String, dynamic> value, String id) {
     final titulo = value['titulo'] as String;
     final texto = value['texto'] as String;
-    final data = value['data'] as Timestamp;
+    final data = value['data'].toDate();
     final prioridade = value['prioridade'] as int;
 
     return Notificacao(

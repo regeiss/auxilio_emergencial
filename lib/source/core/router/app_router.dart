@@ -9,7 +9,7 @@ import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.d
 import 'package:gtk_flutter/source/features/auth/presentation/custom_sign_in_screen.dart';
 import 'package:gtk_flutter/source/features/central_ajuda/presentation/central_ajuda_screen.dart';
 import 'package:gtk_flutter/source/features/notificacoes/presentation/screen/notificacoes_screen.dart';
-import 'package:gtk_flutter/source/features/home/presentation/home_screen.dart';
+import 'package:gtk_flutter/source/features/home/presentation/screen/home_screen.dart';
 import 'package:gtk_flutter/source/features/localizacao/presentation/localizacao.dart';
 import 'package:gtk_flutter/source/features/onboarding/data/onboarding_repository.dart';
 import 'package:gtk_flutter/source/features/onboarding/presentation/views/onboarding_screen.dart';
