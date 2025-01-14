@@ -2,6 +2,7 @@ import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
+import 'package:gtk_flutter/source/features/common/extensions/column_extension.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
 import 'package:gtk_flutter/source/features/common/appbar_menu_action.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends ConsumerWidget {
           actions: <Widget>[
             IconButton(
               onPressed: () {
-                context.goNamed(AppRoute.home.name);
+                context.goNamed(AppRoute.notificacao.name);
               },
               icon: Badge.count(
                 count: 3,
@@ -61,10 +62,11 @@ class HomeScreen extends ConsumerWidget {
                 return const Center(child: Text('Não há dados para exibir'));
               }
               return GridView.builder(
+                padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 3,
+                  mainAxisSpacing: 3,
                 ),
                 itemCount: snapshot.docs.length,
                 itemBuilder: (context, index) {
@@ -99,12 +101,49 @@ class HomeBoardListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd/MM/yyyy hh:mm a');
+    var dateFormat = DateFormat('dd/MM/yyyy hh:mm');
 
     return Container(
-      padding: const EdgeInsets.all(8),
-      color: Colors.green,
-      child: Text(homeBoard.titulo),
+      color: HexColor.fromHex(homeBoard.cor),
+      margin: const EdgeInsets.all(3),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              homeBoard.titulo,
+              style: TextStyle(
+                color: HexColor.fromHex(homeBoard.corTexto ?? '#e9e9e7'),
+                fontSize: 20,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(
+                homeBoard.texto,
+                style: TextStyle(
+                  color: HexColor.fromHex(homeBoard.corTexto ?? '#e9e9e7'),
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Text(dateFormat.format(homeBoard.data),
+                style: TextStyle(
+                  color: HexColor.fromHex(homeBoard.corTexto ?? '#e9e9e7'),
+                  fontSize: 12,
+                )),
+          ],
+        ),
+      ),
     );
+  }
+}
+
+extension HexColor on Color {
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
 }

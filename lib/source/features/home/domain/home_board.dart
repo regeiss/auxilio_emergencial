@@ -11,16 +11,18 @@ class HomeBoard extends Equatable {
       required this.texto,
       required this.data,
       required this.prioridade,
-      required this.cor});
+      required this.cor,
+      required this.corTexto});
   final HomeBoardID id;
   final String titulo;
   final String texto;
   final DateTime data;
   final int prioridade;
   final String cor;
+  final String? corTexto;
 
   @override
-  List<Object> get props => [titulo, texto, data, prioridade, cor];
+  List<Object> get props => [titulo, texto, data, prioridade, cor, corTexto ?? '#e9e9e7'];
 
   @override
   bool get stringify => true;
@@ -31,6 +33,7 @@ class HomeBoard extends Equatable {
     final data = value['data'].toDate();
     final prioridade = value['prioridade'] as int;
     final cor = value['cor'] as String;
+    final corTexto = value['corTexto'] as String?;
 
     return HomeBoard(
       id: id,
@@ -39,6 +42,7 @@ class HomeBoard extends Equatable {
       data: data,
       prioridade: prioridade,
       cor: cor,
+      corTexto: corTexto,
     );
   }
 
@@ -49,6 +53,7 @@ class HomeBoard extends Equatable {
       'data': data,
       'prioridade': prioridade,
       'cor': cor,
+      'corTexto': corTexto,
     };
   }
 }
