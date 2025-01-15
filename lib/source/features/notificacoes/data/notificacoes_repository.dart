@@ -2,6 +2,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
+import 'package:gtk_flutter/source/features/home/presentation/screen/home_screen_provider.dart';
 import 'package:gtk_flutter/source/features/notificacoes/domain/notificacao.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -74,6 +75,9 @@ Query<Notificacao> notificacoesQuery(Ref ref) {
     throw AssertionError('User can\'t be null');
   }
   final repository = ref.watch(notificacoesRepositoryProvider);
+  repository.queryNotificacao(uid: user.uid).get().then((snapshot) {
+    ref.read(counterStateProvider.notifier).state = snapshot.docs.length;
+  });
   return repository.queryNotificacao(uid: user.uid);
 }
 

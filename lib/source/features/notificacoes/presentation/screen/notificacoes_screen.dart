@@ -26,7 +26,7 @@ class NotificacoesScreen extends StatelessWidget {
               onPressed: () {
                 context.goNamed(AppRoute.home.name);
               },
-              child: Text('OK'),
+              child: Text(Strings.ok),
             ),
           ],
         ),
@@ -72,10 +72,11 @@ class NotificacaoListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd/MM/yyyy hh:mm a');
+    var dateFormat = DateFormat('dd/MM/yyyy hh:mm');
 
     return ListTile(
-      leading: Icon(Icons.warning), // Text(notificacao.data.toString()),
+      leading: Icon(Icons.warning),
+      iconColor: Colors.yellow,
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
