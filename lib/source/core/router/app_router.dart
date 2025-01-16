@@ -57,6 +57,7 @@ enum AppRoute {
   termoresp,
   politicapriv,
   notificacao,
+  notificacaoread,
   centralajuda
 }
 
@@ -150,6 +151,22 @@ GoRouter goRouter(GoRouterRef ref) {
         pageBuilder: (context, state) => const NoTransitionPage(
           child: NotificacoesScreen(),
         ),
+        routes: [
+          GoRoute(
+            path: ':id',
+            name: AppRoute.notificacaoread.name,
+            parentNavigatorKey: _rootNavigatorKey,
+            pageBuilder: (context, state) {
+              final id = int.parse(state.pathParameters['id'] as String);
+              final user = state.extra is User ? state.extra as User : null;
+              return MaterialPage(
+                // fullscreenDialog: true,
+                key: state.pageKey,
+                child: UserDetalheScreen(userId: id, user: user),
+              );
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: '/politica',

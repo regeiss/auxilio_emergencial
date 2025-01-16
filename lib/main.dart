@@ -3,12 +3,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gtk_flutter/firebase_options.dart';
+import 'package:gtk_flutter/source/core/notifications/notificacao_service.dart';
 import 'package:gtk_flutter/source/features/base/main_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
+import 'package:timezone/data/latest.dart' as timezone;
 
 var logger = Logger(
   printer: PrettyPrinter(),
@@ -38,7 +40,7 @@ Future<void> main() async {
     };
   }
 
-  // ciclo de vida do app
+  // tratamento do ciclo de vida do app
   void onDetached() => logger.d('detached');
   void onResumed() => logger.d('resumed');
   void onInactive() => logger.d('inactive');
@@ -67,6 +69,8 @@ Future<void> main() async {
     onStateChange: onStateChanged,
   );
   registerErrorHandlers();
+  await NotificationService.init();
+  timezone.initializeTimeZones();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MainApp()));
   FlutterNativeSplash.remove();

@@ -9,6 +9,7 @@ import 'package:gtk_flutter/source/features/home/data/home_board_repository.dart
 import 'package:gtk_flutter/source/features/home/domain/home_board.dart';
 import 'package:gtk_flutter/source/features/home/presentation/controller/home_board_screen_controller.dart';
 import 'package:gtk_flutter/source/features/home/presentation/screen/home_screen_provider.dart';
+import 'package:gtk_flutter/source/features/notificacoes/data/notificacoes_repository.dart';
 import 'package:gtk_flutter/source/utils/async_value_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +20,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final actions = AppBarPopUpMenuActions();
+    final notificacoesQuery = ref.watch(notificacoesQueryProvider);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(Strings.homePage),

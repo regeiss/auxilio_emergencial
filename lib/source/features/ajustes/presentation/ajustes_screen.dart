@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gtk_flutter/source/core/notifications/notificacao_service.dart';
 import 'package:gtk_flutter/source/core/router/app_router.dart';
 import 'package:gtk_flutter/source/features/common/widgets/drawer.dart';
 import 'package:gtk_flutter/source/constants/strings.dart';
@@ -14,6 +15,7 @@ class AjustesScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appThemeState = ref.watch(appThemeStateNotifier);
+    final notificacoesOn = false;
 
     final platformsMap = <DevicePlatform, String>{
       DevicePlatform.device: 'Default',
@@ -118,8 +120,14 @@ class AjustesScreen extends HookConsumerWidget {
                 title: Text('Alterar senha'),
               ),
               SettingsTile.switchTile(
-                onToggle: (_) {},
-                initialValue: true,
+                onToggle: (value) {
+                  if (value) {
+                    NotificationService.showInstantNotification('Instant Notification', 'notificação habilitada');
+                  } else {
+                    NotificationService.showInstantNotification('Instant Notification', 'notificação habilitada');
+                  }
+                },
+                initialValue: notificacoesOn,
                 leading: Icon(Icons.notifications_active),
                 title: Text('Habilitar notificações'),
               ),
@@ -179,102 +187,3 @@ class PlatformPickerScreen extends StatelessWidget {
     );
   }
 }
-      //  Padding(
-      //   padding: const EdgeInsets.all(10),
-      //   child: ListView(
-      //     children: [
-      //       SettingsGroup(
-      //         backgroundColor: Colors.blue,
-      //         items: [
-      //           SettingsItem(
-      //             onTap: () {},
-      //             icons: Icons.edit_square,
-      //             iconStyle: IconStyle(),
-      //             title: 'Aparência',
-      //             subtitle: "Personalize o app",
-      //           ),
-      //           SettingsItem(
-      //             onTap: () {},
-      //             icons: Icons.dark_mode_rounded,
-      //             iconStyle: IconStyle(
-      //               iconsColor: Colors.white,
-      //               withBackground: true,
-      //               backgroundColor: Colors.black,
-      //             ),
-      //             title: 'Modo escuro ',
-      //             subtitle: "Automático",
-      //             trailing: Switch.adaptive(
-      //               value: appThemeState.isDarkModeEnabled,
-      //               onChanged: (enabled) {
-      //                 if (enabled) {
-      //                   appThemeState.setDarkTheme();
-      //                 } else {
-      //                   appThemeState.setLightTheme();
-      //                 }
-      //               },
-      //             ),
-      //           ),
-      //           SettingsItem(
-      //             onTap: () {},
-      //             icons: Icons.text_increase,
-      //             iconStyle: IconStyle(
-      //               iconsColor: Colors.white,
-      //               withBackground: true,
-      //               backgroundColor: Colors.red,
-      //             ),
-      //             title: 'Modo alto contraste ',
-      //             subtitle: "HC",
-      //             trailing: Switch.adaptive(
-      //               value: appThemeState.isHighContrastEnabled,
-      //               onChanged: (enabled) {
-      //                 if (enabled) {
-      //                   appThemeState.setHighContrast();
-      //                 } else {
-      //                   appThemeState.unsetHighContrast();
-      //                 }
-      //               },
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //       SettingsGroup(
-      //         items: [
-      //           SettingsItem(
-      //             onTap: () {
-      //               //  _showDialog(context);
-      //             },
-      //             icons: Icons.info_rounded,
-      //             iconStyle: IconStyle(
-      //               backgroundColor: Colors.purple,
-      //             ),
-      //             title: 'Sobre',
-      //             subtitle: "Informações do app",
-      //           ),
-      //         ],
-      //       ),
-      //       // You can add a settings title
-      //       SettingsGroup(
-      //         settingsGroupTitle: "Conta",
-      //         items: [
-      //           SettingsItem(
-      //             onTap: () {},
-      //             icons: Icons.exit_to_app_rounded,
-      //             title: "Sair",
-      //           ),
-      //           SettingsItem(
-      //             onTap: () {},
-      //             icons: Icons.delete_forever,
-      //             title: "Excluir conta",
-      //             titleStyle: TextStyle(
-      //               color: Colors.red,
-      //               fontWeight: FontWeight.bold,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
-//     );
-//   }
-// }

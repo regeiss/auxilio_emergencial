@@ -6,6 +6,7 @@
 // @dart = 3.4
 
 import 'dart:io'; // flutter_ignore: dart_io_import.
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator_android/geolocator_android.dart';
 import 'package:google_sign_in_android/google_sign_in_android.dart';
 import 'package:image_picker_android/image_picker_android.dart';
@@ -13,6 +14,7 @@ import 'package:path_provider_android/path_provider_android.dart';
 import 'package:shared_preferences_android/shared_preferences_android.dart';
 import 'package:sqflite_android/sqflite_android.dart';
 import 'package:url_launcher_android/url_launcher_android.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator_apple/geolocator_apple.dart';
 import 'package:google_sign_in_ios/google_sign_in_ios.dart';
 import 'package:image_picker_ios/image_picker_ios.dart';
@@ -23,6 +25,7 @@ import 'package:url_launcher_ios/url_launcher_ios.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:file_selector_linux/file_selector_linux.dart';
 import 'package:flutter_keyboard_visibility_linux/flutter_keyboard_visibility_linux.dart';
+import 'package:flutter_local_notifications_linux/flutter_local_notifications_linux.dart';
 import 'package:image_picker_linux/image_picker_linux.dart';
 import 'package:path_provider_linux/path_provider_linux.dart';
 import 'package:shared_preferences_linux/shared_preferences_linux.dart';
@@ -30,6 +33,7 @@ import 'package:url_launcher_linux/url_launcher_linux.dart';
 import 'package:facebook_auth_desktop/facebook_auth_desktop.dart';
 import 'package:file_selector_macos/file_selector_macos.dart';
 import 'package:flutter_keyboard_visibility_macos/flutter_keyboard_visibility_macos.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator_apple/geolocator_apple.dart';
 import 'package:google_sign_in_ios/google_sign_in_ios.dart';
 import 'package:image_picker_macos/image_picker_macos.dart';
@@ -51,6 +55,15 @@ class _PluginRegistrant {
   @pragma('vm:entry-point')
   static void register() {
     if (Platform.isAndroid) {
+      try {
+        AndroidFlutterLocalNotificationsPlugin.registerWith();
+      } catch (err) {
+        print(
+          '`flutter_local_notifications` threw an error: $err. '
+          'The app may not function as expected until you remove this plugin from pubspec.yaml'
+        );
+      }
+
       try {
         GeolocatorAndroid.registerWith();
       } catch (err) {
@@ -115,6 +128,15 @@ class _PluginRegistrant {
       }
 
     } else if (Platform.isIOS) {
+      try {
+        IOSFlutterLocalNotificationsPlugin.registerWith();
+      } catch (err) {
+        print(
+          '`flutter_local_notifications` threw an error: $err. '
+          'The app may not function as expected until you remove this plugin from pubspec.yaml'
+        );
+      }
+
       try {
         GeolocatorApple.registerWith();
       } catch (err) {
@@ -207,6 +229,15 @@ class _PluginRegistrant {
       }
 
       try {
+        LinuxFlutterLocalNotificationsPlugin.registerWith();
+      } catch (err) {
+        print(
+          '`flutter_local_notifications_linux` threw an error: $err. '
+          'The app may not function as expected until you remove this plugin from pubspec.yaml'
+        );
+      }
+
+      try {
         ImagePickerLinux.registerWith();
       } catch (err) {
         print(
@@ -266,6 +297,15 @@ class _PluginRegistrant {
       } catch (err) {
         print(
           '`flutter_keyboard_visibility_macos` threw an error: $err. '
+          'The app may not function as expected until you remove this plugin from pubspec.yaml'
+        );
+      }
+
+      try {
+        MacOSFlutterLocalNotificationsPlugin.registerWith();
+      } catch (err) {
+        print(
+          '`flutter_local_notifications` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
       }

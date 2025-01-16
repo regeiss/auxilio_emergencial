@@ -14,7 +14,7 @@ class Notificacao extends Equatable {
   final int prioridade;
 
   @override
-  List<Object> get props => [titulo, texto, data, prioridade];
+  List<Object> get props => [id, titulo, texto, data, prioridade];
 
   @override
   bool get stringify => true;
