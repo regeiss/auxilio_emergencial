@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, depend_on_referenced_packages
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:timezone/data/latest.dart' as timezone;
+import 'package:app_badge_plus/app_badge_plus.dart';
 
 var logger = Logger(
   printer: PrettyPrinter(),
@@ -42,7 +43,11 @@ Future<void> main() async {
 
   // tratamento do ciclo de vida do app
   void onDetached() => logger.d('detached');
-  void onResumed() => logger.d('resumed');
+  void onResumed() {
+    logger.d('resumed');
+    AppBadgePlus.updateBadge(3);
+  }
+
   void onInactive() => logger.d('inactive');
   void onHidden() => logger.d('hidden');
   void onPaused() => logger.d('paused');
@@ -65,9 +70,7 @@ Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  listener = AppLifecycleListener(
-    onStateChange: onStateChanged,
-  );
+  listener = AppLifecycleListener(onStateChange: onStateChanged);
   registerErrorHandlers();
   await NotificationService.init();
   timezone.initializeTimeZones();

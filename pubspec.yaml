@@ -75,6 +75,8 @@ dependencies:
   drift_flutter: ^0.1.0
   logger: ^2.5.0
   flutter_local_notifications: ^18.0.1
+  flutter_app_badger: ^1.5.0
+  app_badge_plus: ^1.1.6
 
 dev_dependencies:
   flutter_test:

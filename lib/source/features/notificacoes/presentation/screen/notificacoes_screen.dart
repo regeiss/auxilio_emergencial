@@ -53,10 +53,10 @@ class NotificacoesScreen extends StatelessWidget {
                     ref.read(notificacoesScreenControllerProvider.notifier).deleteNotificacao(notificacao),
                 child: NotificacaoListTile(
                   notificacao: notificacao,
-                  onTap: () => context.goNamed(
-                    AppRoute.notificacao.name,
-                    pathParameters: {'id': notificacao.id},
-                  ),
+                  // onTap: () => context.goNamed(
+                  //   AppRoute.notificacaoread.name,
+                  //   pathParameters: {'id': notificacao.id},
+                  // ),
                 ),
               );
             },

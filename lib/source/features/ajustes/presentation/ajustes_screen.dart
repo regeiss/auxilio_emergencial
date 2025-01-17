@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gtk_flutter/source/core/notifications/notificacao_service.dart';
@@ -15,7 +16,7 @@ class AjustesScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appThemeState = ref.watch(appThemeStateNotifier);
-    final notificacoesOn = false;
+    final notificacoesOn = useState(true);
 
     final platformsMap = <DevicePlatform, String>{
       DevicePlatform.device: 'Default',
@@ -122,12 +123,14 @@ class AjustesScreen extends HookConsumerWidget {
               SettingsTile.switchTile(
                 onToggle: (value) {
                   if (value) {
+                    notificacoesOn.value = true;
                     NotificationService.showInstantNotification('Instant Notification', 'notificação habilitada');
                   } else {
+                    notificacoesOn.value = false;
                     NotificationService.showInstantNotification('Instant Notification', 'notificação habilitada');
                   }
                 },
-                initialValue: notificacoesOn,
+                initialValue: notificacoesOn.value,
                 leading: Icon(Icons.notifications_active),
                 title: Text('Habilitar notificações'),
               ),
