@@ -3,7 +3,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gtk_flutter/source/features/auth/data/firebase_auth_repository.dart';
 import 'package:gtk_flutter/source/features/home/domain/home_board.dart';
-import 'package:gtk_flutter/source/features/home/presentation/screen/home_screen_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
